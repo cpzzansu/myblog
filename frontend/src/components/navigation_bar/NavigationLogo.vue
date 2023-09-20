@@ -1,13 +1,11 @@
 <template>
-  <div class="logo" style="">
+  <div class="logo">
     <img class="logo-image" src="../../assets/logo.png" />
   </div>
 </template>
-<script>
-
-</script>
+<script></script>
 <style scoped>
-.logo{
+.logo {
   width: 163px;
   height: 30px;
   justify-content: center;
@@ -15,8 +13,8 @@
   display: inline-block;
   float: left;
 }
-.logo-image{
+.logo-image {
   width: 162px;
-  height: 30px
+  height: 30px;
 }
 </style>

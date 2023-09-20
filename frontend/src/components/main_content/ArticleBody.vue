@@ -114,7 +114,7 @@
 </template>
 <style scoped>
 body {
-  color: #b6b7bc;
+  color: #d4d4dc;
   text-align: left;
   font-family: "Pretendard", "sans-serif";
   font-weight: 400;

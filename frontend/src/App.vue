@@ -33,6 +33,6 @@ body {
   display: flex;
   justify-content: center;
   text-align: center;
-  background-color: #1c1c20;
+  background-color: #1c1c20 !important;
 }
 </style>
