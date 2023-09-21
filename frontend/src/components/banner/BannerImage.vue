@@ -1,20 +1,23 @@
 <script></script>
 <template>
-  <div class="banner">
-    <img class="banner-img" src="../../assets/banner.png" />
+  <div>
+    <div class="banner"><div class="banner-font">서원닷컴</div></div>
   </div>
 </template>
 <style scoped>
 .banner {
-  width: 1130px;
-  height: 80px;
-  background: #1c1c20;
+  height: 100px;
+  background: #69bae1;
   border-radius: 9px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 25px;
+  margin-right: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.banner-img {
-  width: 1130px;
-  border-radius: 9px;
+.banner-font {
+  font-family: Pretendard-Regular;
+  font-weight: 900;
+  font-size: 80px;
 }
 </style>
