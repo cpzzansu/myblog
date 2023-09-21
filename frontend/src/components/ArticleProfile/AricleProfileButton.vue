@@ -1,7 +1,11 @@
-<script></script>
+<script>
+export default {
+  props: ['buttonName'],
+};
+</script>
 <template>
   <div class="profile-btn">
-    <div class="profile-btn-font">팔로우</div>
+    <div class="profile-btn-font">{{ buttonName }}</div>
   </div>
 </template>
 <style scoped>

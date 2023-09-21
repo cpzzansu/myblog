@@ -1,10 +1,19 @@
 <script>
 import ArticleProfileName from '@/components/ArticleProfile/ArticleProfileName.vue';
 import ArticleProfileButton from '@/components/ArticleProfile/AricleProfileButton.vue';
+import ArticleProfileNewsFeed from '@/components/ArticleProfile/AticleProfileNewsFeed.vue';
+
 export default {
   components: {
     ArticleProfileName,
     ArticleProfileButton,
+    ArticleProfileNewsFeed,
+  },
+  data() {
+    return {
+      follow: '팔로우',
+      coffeeChat: '☕ 커피챗',
+    };
   },
 };
 </script>
@@ -13,8 +22,11 @@ export default {
     <div class="article-profile-div">
       <ArticleProfileName></ArticleProfileName>
       <div class="coffee-chat-btn d-flex justify-content-between">
-        <ArticleProfileButton></ArticleProfileButton>
-        <ArticleProfileButton></ArticleProfileButton>
+        <ArticleProfileButton :button-name="follow"></ArticleProfileButton>
+        <ArticleProfileButton :button-name="coffeeChat"></ArticleProfileButton>
+      </div>
+      <div class="NewsFeedDiv">
+        <ArticleProfileNewsFeed></ArticleProfileNewsFeed>
       </div>
     </div>
   </div>
@@ -26,7 +38,7 @@ export default {
   top: 300px;
   width: 330px;
   height: 390px;
-  background: #1c1c20;
+  background: #00000000;
   border-radius: 11px;
 }
 @media (max-width: 1200px) {
@@ -38,11 +50,14 @@ export default {
     top: 300px;
     width: 330px;
     height: 390px;
-    background: #1c1c20;
+    background: #00000000;
     border-radius: 11px;
   }
 }
 .coffee-chat-btn {
   margin-top: 30px;
+}
+.NewsFeedDiv {
+  margin-top: 15px;
 }
 </style>

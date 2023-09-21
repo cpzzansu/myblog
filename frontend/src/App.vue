@@ -1,15 +1,18 @@
 <template>
-  <Home></Home>
+  <div>
+    <NavigationBar></NavigationBar>
+    <router-view></router-view>
+    <Footer></Footer>
+  </div>
 </template>
 
 <script>
-import Home from './views/main/Home.vue';
+import NavigationBar from '@/components/navigation_bar/NavigationBar.vue';
+import Footer from '@/components/footer/Footer.vue';
 
 export default {
   name: 'App',
-  components: {
-    Home,
-  },
+  components: {NavigationBar, Footer},
 };
 </script>
 

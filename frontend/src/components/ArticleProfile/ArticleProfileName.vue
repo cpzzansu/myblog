@@ -21,11 +21,12 @@
   width: 100%;
   padding-top: 2px;
   padding-bottom: 2px;
-  background: #1c1c20;
+  background: #00000000;
   justify-content: flex-start;
   align-items: center;
   gap: 5px;
   display: flex;
+  border-radius: 12px;
 }
 .member-name {
   color: white;
@@ -52,7 +53,7 @@
 .profile-massage {
   height: 51px;
   margin-left: 10px;
-  background: #1c1c20;
+  background: #00000000;
   justify-content: flex-start;
 
   display: inline-flex;
