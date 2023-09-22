@@ -1,7 +1,7 @@
 <script>
-import ArticleProfileName from '@/components/ArticleProfile/ArticleProfileName.vue';
-import ArticleProfileButton from '@/components/ArticleProfile/AricleProfileButton.vue';
-import ArticleProfileNewsFeed from '@/components/ArticleProfile/AticleProfileNewsFeed.vue';
+import ArticleProfileName from '@/components/article_profile/ArticleProfileName.vue';
+import ArticleProfileButton from '@/components/article_profile/AricleProfileButton.vue';
+import ArticleProfileNewsFeed from '@/components/article_profile/AticleProfileNewsFeed.vue';
 
 export default {
   components: {
