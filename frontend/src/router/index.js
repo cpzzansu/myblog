@@ -1,7 +1,8 @@
 // router/index.js
 import {createRouter, createWebHistory} from 'vue-router';
 import Home from '@/views/main/Home.vue';
-import Login from '@/views/login/Login.vue';
+import Login from '@/views/common/Login.vue';
+import AddMember from '@/views/common/AddMember.vue';
 
 const routes = [
   {
@@ -13,6 +14,11 @@ const routes = [
     path: '/login',
     name: 'LoginPage',
     component: Login,
+  },
+  {
+    path: '/addMember',
+    name: 'AddMemberPage',
+    component: AddMember,
   },
 ];
 

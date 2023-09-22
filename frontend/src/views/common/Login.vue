@@ -3,10 +3,17 @@ import LoginFormLogo from '@/components/login_form/LoginFormLogo.vue';
 import LoginFormTitle from '@/components/login_form/LoginFormTitle.vue';
 import LoginForm from '@/components/login_form/LoginForm.vue';
 import LoginFormButton from '@/components/login_form/LoginFormButton.vue';
+import LoginFormAddButton from '@/components/login_form/LoginFormAddButton.vue';
 
 export default {
   name: 'LoginPage',
-  components: {LoginFormButton, LoginFormLogo, LoginFormTitle, LoginForm},
+  components: {
+    LoginFormAddButton,
+    LoginFormButton,
+    LoginFormLogo,
+    LoginFormTitle,
+    LoginForm,
+  },
 };
 </script>
 <template>
@@ -16,6 +23,7 @@ export default {
       <LoginFormTitle></LoginFormTitle>
       <LoginForm></LoginForm>
       <LoginFormButton></LoginFormButton>
+      <LoginFormAddButton></LoginFormAddButton>
     </div>
   </div>
 </template>
