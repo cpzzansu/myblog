@@ -17,6 +17,11 @@ export default {
       required: true,
     },
   },
+  methods: {
+    emitInputValue(event) {
+      this.$emit('input-value', event.target.value);
+    },
+  },
 };
 </script>
 <template>
@@ -29,6 +34,7 @@ export default {
       :name="inputId"
       :type="inputType"
       class="form-control login-input"
+      @input="emitInputValeu"
     />
   </div>
 </template>

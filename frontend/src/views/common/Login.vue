@@ -1,14 +1,18 @@
 <script>
-import {ref, computed} from 'vue';
-import {useStore} from 'vuex';
 import LoginFormLogo from '@/components/login_form/LoginFormLogo.vue';
 import LoginFormTitle from '@/components/login_form/LoginFormTitle.vue';
 import LoginForm from '@/components/login_form/LoginForm.vue';
 import LoginFormButton from '@/components/login_form/LoginFormButton.vue';
 import LoginFormAddButton from '@/components/login_form/LoginFormAddButton.vue';
+import axios from 'axios';
 
 export default {
   name: 'LoginPage',
+  data() {
+    return {
+      member: {},
+    };
+  },
   components: {
     LoginFormAddButton,
     LoginFormButton,
@@ -16,35 +20,26 @@ export default {
     LoginFormTitle,
     LoginForm,
   },
-  setup() {
-    const memberEmail = ref('test');
-    const memberPw = ref('asdf');
-    const store = useStore();
-
-    // 로그인의 필요성 확인
-    const needLogin = computed(() => {
-      return store.getters['auth/needLogin'];
-    });
-
-    // 로그인 처리
-    const login = async () => {
-      try {
-        const rs = await store.dispatch('auth/login', {
-          memberEmail: memberEmail.value,
-          memberPw: memberPw.value,
+  methods: {
+    async login() {
+      await axios
+        .post('/api/login', this.member, {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          if (error.response && error.response.status === 401) {
+            this.$router.push('/login');
+          }
         });
-        alert(rs);
-      } catch (error) {
-        alert(error);
-      }
-    };
-
-    return {
-      needLogin,
-      memberEmail,
-      memberPw,
-      login,
-    };
+    },
+    loginMember(value) {
+      this.member = value;
+    },
   },
 };
 </script>
@@ -53,8 +48,8 @@ export default {
     <div class="login-form">
       <LoginFormLogo></LoginFormLogo>
       <LoginFormTitle></LoginFormTitle>
-      <LoginForm></LoginForm>
-      <LoginFormButton></LoginFormButton>
+      <LoginForm @input-value="loginMember"></LoginForm>
+      <LoginFormButton @click="login"></LoginFormButton>
       <LoginFormAddButton></LoginFormAddButton>
     </div>
   </div>

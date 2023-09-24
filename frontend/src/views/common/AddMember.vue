@@ -16,7 +16,7 @@ export default defineComponent({
       await axios
         .post('/api/member', this.member, {
           headers: {
-            Authorization: 'Bearer ' + localStorage.getItem('token'),
+            Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
           },
         })
         .then((response) => {
@@ -24,7 +24,7 @@ export default defineComponent({
         })
         .catch((error) => {
           if (error.response && error.response.status === 401) {
-            this.$router.push('/login');
+            this.$router.push('/addMember');
           }
         });
     },
