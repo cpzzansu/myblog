@@ -4,6 +4,7 @@ import AddFormTitle from '@/components/add_form/AddFormTitle.vue';
 import AddFormInformation from '@/components/add_form/AddFormInformation.vue';
 import AddForm from '@/components/add_form/AddForm.vue';
 import AddFormButton from '@/components/add_form/AddFormButton.vue';
+import axios from 'axios';
 
 export default defineComponent({
   components: {AddFormButton, AddFormInformation, AddFormTitle, AddForm},
@@ -11,8 +12,21 @@ export default defineComponent({
     return {member: {}};
   },
   methods: {
-    consoleOut() {
-      console.log(this.member);
+    async save() {
+      await axios
+        .post('/api/member', this.member, {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          if (error.response && error.response.status === 401) {
+            this.$router.push('/login');
+          }
+        });
     },
     updateMember(value) {
       this.member = value;
@@ -26,7 +40,7 @@ export default defineComponent({
       <AddFormTitle></AddFormTitle>
       <AddFormInformation></AddFormInformation>
       <AddForm @input-value="updateMember"></AddForm>
-      <AddFormButton @click="consoleOut"></AddFormButton>
+      <AddFormButton @click="save"></AddFormButton>
     </div>
   </div>
 </template>

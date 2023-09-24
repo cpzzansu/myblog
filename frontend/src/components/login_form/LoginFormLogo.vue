@@ -9,7 +9,7 @@
   height: 70px;
   justify-content: center;
   align-items: center;
-  display: inline-flex;
+  display: flex;
   margin-bottom: 30px;
 }
 .login-logo-image {

@@ -12,6 +12,7 @@ import Footer from '@/components/footer/Footer.vue';
 
 export default {
   name: 'App',
+  // eslint-disable-next-line
   components: {NavigationBar, Footer},
 };
 </script>
