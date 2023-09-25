@@ -1,8 +1,6 @@
 package com.developerjs.myblog.controller;
 
 import com.developerjs.myblog.dto.Member;
-import com.developerjs.myblog.service.AuthenticationService;
-import com.developerjs.myblog.service.MemberService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,8 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LoginController {
 
-    private AuthenticationService authService;
-    @PostMapping("/member")
+    @PostMapping("/login")
     public void save(@RequestBody Member member){
 
     }

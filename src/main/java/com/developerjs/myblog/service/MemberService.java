@@ -36,4 +36,9 @@ public class MemberService {
 
         memberRepository.save(memberEntity);
     }
+
+    public MemberEntity findByMemberId(Long memberId){
+        return memberRepository.findById(memberId)
+                .orElseThrow(() -> new IllegalArgumentException("Unexpected member"));
+    }
 }

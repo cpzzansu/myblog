@@ -45,7 +45,7 @@ public class MemberEntity implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("member"));
+        return List.of(new SimpleGrantedAuthority("user"));
     }
     @Override
     public String getUsername(){
@@ -59,7 +59,7 @@ public class MemberEntity implements UserDetails {
 
     @Override
     public String getPassword(){
-        return getPassword();
+        return memberPw;
     }
 
     @Override

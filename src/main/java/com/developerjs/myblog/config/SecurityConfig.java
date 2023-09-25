@@ -1,30 +1,39 @@
 package com.developerjs.myblog.config;
 
 
-import com.developerjs.myblog.jwt.TokenProvider;
+
+import com.developerjs.myblog.service.MemberDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
+
 @SuppressWarnings("ALL")
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
+    private MemberDetailsService userService;
+    @Bean
+    public WebSecurityCustomizer configure(){
+        return (web) -> web.ignoring()
+                .requestMatchers(toH2Console())
+                .requestMatchers("/static/**");
+    }
 
-    private final TokenProvider tokenProvider;
-    private AuthenticationConfiguration authenticationConfiguration;
-    private UserDetailsService userService;
+
 
     // PasswordEncoder는 BCryptPasswordEncoder를 사용
     @Bean
@@ -63,11 +72,12 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(HttpSecurity http, PasswordEncoder passwordEncoder, UserDetailsService userDetailsService) throws Exception{
+    public AuthenticationManager authenticationManager(HttpSecurity http, PasswordEncoder passwordEncoder, MemberDetailsService userService) throws Exception{
         return http.getSharedObject(AuthenticationManagerBuilder.class)
                 .userDetailsService(userService)
                 .passwordEncoder(passwordEncoder)
-                .and().build();
+                .and()
+                .build();
     }
 
 

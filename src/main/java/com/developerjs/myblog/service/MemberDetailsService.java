@@ -5,16 +5,18 @@ import com.developerjs.myblog.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
+
 @RequiredArgsConstructor
 @Service
-public class memberDetailsService implements UserDetailsService {
+public class MemberDetailsService implements UserDetailsService {
 
     private final MemberRepository memberRepository;
 
     @Override
     public MemberEntity loadUserByUsername(String memberEmail){
-        return memberRepository.findByEmail(memberEmail)
-                .orElseThrow(() -> new IllegalArgumentException((memberEmail)));
-
+        return memberRepository.findByMemberEmail(memberEmail)
+                .orElseThrow(() -> new IllegalArgumentException(memberEmail));
     }
+
+
 }
