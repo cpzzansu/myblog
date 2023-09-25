@@ -3,6 +3,7 @@ package com.developerjs.myblog.config;
 
 
 import com.developerjs.myblog.service.MemberDetailsService;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,13 +27,6 @@ import static org.springframework.boot.autoconfigure.security.servlet.PathReques
 @RequiredArgsConstructor
 public class SecurityConfig {
     private MemberDetailsService userService;
-    @Bean
-    public WebSecurityCustomizer configure(){
-        return (web) -> web.ignoring()
-                .requestMatchers(toH2Console())
-                .requestMatchers("/static/**");
-    }
-
 
 
     // PasswordEncoder는 BCryptPasswordEncoder를 사용
@@ -40,6 +34,7 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 
     private UserDetailsService userDetailsService;
     private PasswordEncoder passwordEncoder;
@@ -51,6 +46,8 @@ public class SecurityConfig {
                 .csrf().disable()
 
                 .exceptionHandling()
+                .authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
+                // ... 기타 설정
 
                 // 세션을 사용하지 않기 때문에 STATELESS로 설정
                 .and()
@@ -64,9 +61,16 @@ public class SecurityConfig {
                 .anyRequest().authenticated()// 그 외 인증 없이 접근X
 
                 .and()
+                .formLogin()
+                .loginPage("http://localhost:8084/login")
+                .defaultSuccessUrl("http://localhost:8084/")
+                .permitAll()
+
+                .and()
                 .logout()
                 .logoutSuccessUrl("http://localhost:8084/login")
                 .invalidateHttpSession(true);
+
 
         return httpSecurity.build();
     }

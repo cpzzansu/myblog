@@ -24,14 +24,10 @@ public class MemberService {
     public void save(Member member){
 
         member.setMemberPw(passwordEncoder.encode(member.getMemberPw()));
-        member.setMemberRegistTime(LocalDateTime.now());
-        member.setMemberUpdateTime(LocalDateTime.now());
 
         MemberEntity memberEntity = MemberEntity.builder()
-                .memberEmail(member.getMemberEmail())
-                .memberPw(member.getMemberPw())
-                .memberRegistTime(member.getMemberRegistTime())
-                .memberUpdateTime(member.getMemberUpdateTime())
+                .email(member.getMemberEmail())
+                .password(member.getMemberPw())
                 .build();
 
         memberRepository.save(memberEntity);

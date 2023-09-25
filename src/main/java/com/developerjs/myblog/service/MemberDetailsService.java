@@ -14,7 +14,7 @@ public class MemberDetailsService implements UserDetailsService {
 
     @Override
     public MemberEntity loadUserByUsername(String memberEmail){
-        return memberRepository.findByMemberEmail(memberEmail)
+        return memberRepository.findByEmail(memberEmail)
                 .orElseThrow(() -> new IllegalArgumentException(memberEmail));
     }
 

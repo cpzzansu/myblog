@@ -39,6 +39,7 @@ export default {
     },
     loginMember(value) {
       this.member = value;
+      console.log(this.member);
     },
   },
 };
@@ -52,6 +53,11 @@ export default {
       <LoginFormButton @click="login"></LoginFormButton>
       <LoginFormAddButton></LoginFormAddButton>
     </div>
+    <form action="/api/login" method="post" content="application/json">
+      <input type="text" name="memberEmail" />
+      <input type="text" name="memberPw" />
+      <button type="submit"></button>
+    </form>
   </div>
 </template>
 <style scoped>

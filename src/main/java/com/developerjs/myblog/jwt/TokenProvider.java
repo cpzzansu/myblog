@@ -37,7 +37,7 @@ public class TokenProvider{
                 .setIssuer(jwtProperties.getIssuer())
                 .setIssuedAt(now)           // 내용 iat : 현재 시간
                 .setExpiration(expiry)      // 내용 exp : expiry 멤버 변숫값
-                .setSubject(member.getMemberEmail())    // 내용 sub : 멤버의 이메일
+                .setSubject(member.getEmail())    // 내용 sub : 멤버의 이메일
                 .claim("id", member.getId())     // 클레임 id : 멤버 id
                 // 서명 : 비밀값과 함께 해시값을 HS256 방식으로 암호화
                 .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey())

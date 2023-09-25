@@ -34,7 +34,7 @@ export default {
       :name="inputId"
       :type="inputType"
       class="form-control login-input"
-      @input="emitInputValeu"
+      @input="emitInputValue"
     />
   </div>
 </template>

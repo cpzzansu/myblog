@@ -23,24 +23,16 @@ public class MemberEntity implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false, unique = true, length = 50)
-    private String memberEmail;
+    @Column(name = "member_email", nullable = false, unique = true, length = 50)
+    private String email;
 
-    @Column(nullable = false, length = 100)
-    private String memberPw;
-
-    @Column(nullable = false, updatable = false)
-    @CreatedDate // Entity 생성 시간 자동 업데이트
-    private LocalDateTime memberRegistTime = LocalDateTime.now();
-
-    @Column(nullable = false)
-    @LastModifiedDate // Entity 수정 시간 자동 업데이트
-    private LocalDateTime memberUpdateTime = LocalDateTime.now();
+    @Column(name = "member_pw", nullable = false, length = 100)
+    private String password;
 
     @Builder
     public MemberEntity(String memberEmail, String memberPw, String auth){
-        this.memberEmail = memberEmail;
-        this.memberPw = memberPw;
+        this.email = memberEmail;
+        this.password = memberPw;
     }
 
     @Override
@@ -49,7 +41,7 @@ public class MemberEntity implements UserDetails {
     }
     @Override
     public String getUsername(){
-        return memberEmail;
+        return email;
     }
 
     @Override
@@ -59,7 +51,7 @@ public class MemberEntity implements UserDetails {
 
     @Override
     public String getPassword(){
-        return memberPw;
+        return password;
     }
 
     @Override
