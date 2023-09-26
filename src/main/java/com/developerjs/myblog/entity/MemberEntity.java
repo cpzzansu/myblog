@@ -69,6 +69,12 @@ public class MemberEntity implements UserDetails {
         return true;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "MemberEntity{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

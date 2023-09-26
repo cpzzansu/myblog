@@ -29,10 +29,15 @@ export default {
           },
         })
         .then((response) => {
-          console.log(response.data);
+          const accessToken = response.headers['accesstoken'];
+          const refreshToken = response.headers['refreshtoken'];
+
+          localStorage.setItem('accessToken', accessToken);
+          localStorage.setItem('refreshToken', refreshToken);
         })
         .catch((error) => {
           if (error.response && error.response.status === 401) {
+            console.error('Login error: ', error);
             this.$router.push('/login');
           }
         });
@@ -53,11 +58,6 @@ export default {
       <LoginFormButton @click="login"></LoginFormButton>
       <LoginFormAddButton></LoginFormAddButton>
     </div>
-    <form action="/api/login" method="post" content="application/json">
-      <input type="text" name="memberEmail" />
-      <input type="text" name="memberPw" />
-      <button type="submit"></button>
-    </form>
   </div>
 </template>
 <style scoped>
