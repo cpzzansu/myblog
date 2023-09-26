@@ -33,6 +33,7 @@ public class LoginAuthenticationFilter extends UsernamePasswordAuthenticationFil
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response){
         try {
+
             MemberLoginRequest memberLoginRequest = new ObjectMapper()
                     .readValue(request.getInputStream(), MemberLoginRequest.class);
 
@@ -49,6 +50,7 @@ public class LoginAuthenticationFilter extends UsernamePasswordAuthenticationFil
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
                                             Authentication authResult) throws IOException, ServletException{
+
         String username = authResult.getName();
         Optional<MemberEntity> memberEntity = memberRepository.findByEmail(username);
         if(!memberEntity.isPresent()){

@@ -2,10 +2,8 @@ package com.developerjs.myblog.config;
 
 
 
-import com.developerjs.myblog.config.jwt.JwtProperties;
 import com.developerjs.myblog.jwt.LoginAuthenticationFilter;
 import com.developerjs.myblog.jwt.TokenAuthenticationFilter;
-import com.developerjs.myblog.jwt.TokenProvider;
 import com.developerjs.myblog.service.MemberDetailsService;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -14,23 +12,19 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
-
-import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
 
 @SuppressWarnings("ALL")
 @Configuration
@@ -50,7 +44,7 @@ public class SecurityConfig {
     private PasswordEncoder passwordEncoder;
     private AuthenticationManager authenticationManager;
 
-    private final TokenProvider tokenProvider;
+    private final TokenAuthenticationFilter tokenAuthenticationFilter;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
@@ -65,7 +59,10 @@ public class SecurityConfig {
 
 
                 .exceptionHandling()
-                .authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
+                .authenticationEntryPoint((request, response, authException) -> {
+                    System.out.println("AuthenticationEntryPoint triggered");
+                    response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+                })
                 // ... 기타 설정
 
                 // 세션을 사용하지 않기 때문에 STATELESS로 설정
@@ -76,10 +73,10 @@ public class SecurityConfig {
                 .and()
                 .authorizeHttpRequests() // HttpServletRequest를 사용하는 요청들에 대한 접근제한을 설정하겠다.
                 .requestMatchers("/member", "/login").permitAll()
-                .requestMatchers("/private/**").authenticated() // 로그인 api
-                .anyRequest().authenticated()// 그 외 인증 없이 접근X
+                .requestMatchers("/private/**").authenticated()
 
                 .and()
+                .addFilterAt(tokenAuthenticationFilter, BasicAuthenticationFilter.class)
                 .addFilter(loginAuthenticationFilter)
                 .logout()
                 .logoutSuccessUrl("http://localhost:8084/login")

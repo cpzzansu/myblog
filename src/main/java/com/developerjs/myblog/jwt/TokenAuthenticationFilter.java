@@ -7,10 +7,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-
+@Component
 @RequiredArgsConstructor
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
     private final TokenProvider tokenProvider;
@@ -28,11 +29,18 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
         // 가져온 값에서 접두사 제거
         String token = getAccessToken(authorizationHeader);
         // 가져온 토큰이 유효한지 확인하고, 유효한 때는 인증 정보 설정
+        System.out.println(token);
         if(tokenProvider.validToken(token)){
+            System.out.println("1");
             Authentication authentication = tokenProvider.getAuthentication(token);
             SecurityContextHolder.getContext().setAuthentication(authentication);
-        }
+            System.out.println(SecurityContextHolder.getContext().getAuthentication());
 
+            // 인증 성공에 대한 응답 보내기
+            response.setStatus(HttpServletResponse.SC_OK);
+            response.getWriter().write("Authentication successful");
+            return;  // 여기서 반환하여 더 이상의 필터 처리를 중지
+        }
         filterChain.doFilter(request, response);
     }
 

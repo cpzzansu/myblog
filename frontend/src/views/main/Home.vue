@@ -21,7 +21,6 @@ export default {
     <BannerImage></BannerImage>
     <MainContent></MainContent>
     <ArticleProfile></ArticleProfile>
-    <Footer></Footer>
   </div>
 </template>
 <style>

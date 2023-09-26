@@ -29,6 +29,12 @@ public class MemberEntity implements UserDetails {
     @Column(name = "member_pw", nullable = false, length = 100)
     private String password;
 
+    @Column
+    private LocalDateTime memberRegistTime;
+
+    @Column
+    private LocalDateTime memberUpdateTime;
+
     @Builder
     public MemberEntity(String memberEmail, String memberPw, String auth){
         this.email = memberEmail;

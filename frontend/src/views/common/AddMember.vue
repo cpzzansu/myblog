@@ -19,11 +19,12 @@ export default defineComponent({
             Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
           },
         })
-        .then((response) => {
-          console.log(response.data);
+        .then(() => {
+          this.$router.push('/login');
         })
         .catch((error) => {
           if (error.response && error.response.status === 401) {
+            alert('회원가입에 실패했습니다.');
             this.$router.push('/addMember');
           }
         });
