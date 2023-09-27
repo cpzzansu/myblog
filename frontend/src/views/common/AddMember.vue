@@ -47,7 +47,6 @@ export default defineComponent({
 </template>
 <style scoped>
 .addMemberDiv {
-  width: 1140px;
   margin-left: 15px;
   margin-right: 15px;
   height: 800px;

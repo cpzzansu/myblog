@@ -18,7 +18,7 @@ export default {
   <div class="nbd">
     <nav class="navbar navbar-content">
       <div class="container">
-        <div class="navigation-div col-12">
+        <div class="navigation-div col-xs-12 col-12">
           <NavigationLogo linkTo="/"></NavigationLogo>
           <NavigationMenu menu="블로그" linkTo="/"></NavigationMenu>
           <NavigationMenu menu="포트폴리오" linkTo="/"></NavigationMenu>

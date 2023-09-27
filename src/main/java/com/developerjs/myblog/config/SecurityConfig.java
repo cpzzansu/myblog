@@ -72,7 +72,7 @@ public class SecurityConfig {
 
                 .and()
                 .authorizeHttpRequests() // HttpServletRequest를 사용하는 요청들에 대한 접근제한을 설정하겠다.
-                .requestMatchers("/member", "/login").permitAll()
+                .requestMatchers("/member", "/login", "/token").permitAll()
                 .requestMatchers("/private/**").authenticated()
 
                 .and()

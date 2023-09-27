@@ -2,7 +2,9 @@ package com.developerjs.myblog.service;
 
 import com.developerjs.myblog.dto.LoginAccessTokenResponse;
 import com.developerjs.myblog.entity.MemberEntity;
+import com.developerjs.myblog.entity.RefreshToken;
 import com.developerjs.myblog.jwt.TokenProvider;
+import com.developerjs.myblog.repository.RefreshTokenRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,6 +25,9 @@ public class AuthenticationService {
     private TokenProvider tokenProvider;
 
     private MemberDetailsService memberDetailsService;
+
+    private final RefreshTokenRepository refreshTokenRepository;
+
     public LoginAccessTokenResponse authenticateMember(String memberEmail, String memberPw){
 
         Authentication authentication = authenticationManager.authenticate(
@@ -36,7 +41,9 @@ public class AuthenticationService {
         // 만료 시간은 예를 들어 Duration.ofHours(1) 등으로 설정
         LoginAccessTokenResponse loginAccessTokenResponse = new LoginAccessTokenResponse();
         loginAccessTokenResponse.setAccessToken(tokenProvider.generateToken(member, Duration.ofHours(1)));
-        loginAccessTokenResponse.setRefreshToken(tokenProvider.generateToken(member, Duration.ofDays(1)));
+        String refreshToken = tokenProvider.generateToken(member, Duration.ofDays(1));
+        loginAccessTokenResponse.setRefreshToken(refreshToken);
+
 
         return loginAccessTokenResponse;
     }

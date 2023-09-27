@@ -18,11 +18,6 @@ export default {
 </script>
 
 <style>
-#app {
-  width: 1170px;
-  display: flex;
-  justify-content: center;
-}
 body {
   @font-face {
     font-family: 'Pretendard-Regular';

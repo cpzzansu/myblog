@@ -17,9 +17,14 @@ public class TokenApiController {
     private final TokenService tokenService;
 
     @PostMapping("/token")
-    public ResponseEntity<CreateAccessTokenResponse> createNewAccessToken(@RequestBody CreateAccessTokenRequest request){
-        String newAccessToken = tokenService.createNewAccessToken(request.getRefreshToken());
+    public ResponseEntity<CreateAccessTokenResponse> createNewAccessToken(@RequestBody String refreshToken){
+        if(refreshToken.endsWith("=")){
+            refreshToken = refreshToken.substring(0, refreshToken.length() - 1);
+        }
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(new CreateAccessTokenResponse(newAccessToken));
+        String newAccessToken = tokenService.createNewAccessToken(refreshToken);
+        CreateAccessTokenResponse createAccessTokenResponse = new CreateAccessTokenResponse();
+        createAccessTokenResponse.setAccessToken(newAccessToken);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createAccessTokenResponse);
     }
 }

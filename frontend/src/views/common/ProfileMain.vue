@@ -1,25 +1,26 @@
 <script>
+import ProfileMenuBar from '@/components/profile/profile_menu/ProfileMenuBar.vue';
+
 export default {
-  components: {},
+  components: {ProfileMenuBar},
 };
 </script>
 <template>
-  <div class="profile-div">
-    <div class="profie-main-div">d</div>
+  <div class="profile-div container">
+    <div class="profie-main-div col-xs-12 col-12">
+      <ProfileMenuBar></ProfileMenuBar>
+      <RouterView />
+    </div>
   </div>
 </template>
 <style scoped>
 .profile-div {
-  width: 1140px;
   margin-left: 15px;
   margin-right: 15px;
   height: 800px;
+  width: 1170px;
   display: flex;
   justify-content: center;
   align-items: start;
-}
-.profie-main-div {
-  width: 860px;
-  background-color: #5dd9ff;
 }
 </style>

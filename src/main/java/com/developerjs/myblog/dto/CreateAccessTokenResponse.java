@@ -1,11 +1,8 @@
 package com.developerjs.myblog.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 
-@AllArgsConstructor
-@Getter
+@Data
 public class CreateAccessTokenResponse {
     private String accessToken;
-
 }

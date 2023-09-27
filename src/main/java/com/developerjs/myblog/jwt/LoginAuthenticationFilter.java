@@ -3,7 +3,9 @@ package com.developerjs.myblog.jwt;
 import com.developerjs.myblog.dto.Member;
 import com.developerjs.myblog.dto.MemberLoginRequest;
 import com.developerjs.myblog.entity.MemberEntity;
+import com.developerjs.myblog.entity.RefreshToken;
 import com.developerjs.myblog.repository.MemberRepository;
+import com.developerjs.myblog.repository.RefreshTokenRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.FilterChain;
@@ -30,6 +32,9 @@ public class LoginAuthenticationFilter extends UsernamePasswordAuthenticationFil
     private MemberRepository memberRepository;
     @Autowired
     private TokenProvider tokenProvider;
+    @Autowired
+    private RefreshTokenRepository refreshTokenRepository;
+
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response){
         try {
@@ -61,7 +66,10 @@ public class LoginAuthenticationFilter extends UsernamePasswordAuthenticationFil
         String accessToken = tokenProvider.generateToken(member, Duration.ofHours(2));
 
         // 리프레시 토큰 발행 (일반적으로 리프레시 토큰의 수명은 액세스 토큰보다 길게 설정)
-        String refreshToken = tokenProvider.generateToken(member, Duration.ofDays(30));
+        String refreshToken = tokenProvider.generateToken(member, Duration.ofDays(2));
+        // 리프레시 토큰 DB에 저장
+        RefreshToken refreshTokenEntity = new RefreshToken(member.getId(), refreshToken);
+        refreshTokenRepository.save(refreshTokenEntity);
 
         response.addHeader("accesstoken", accessToken);
         response.addHeader("refreshtoken", refreshToken);
