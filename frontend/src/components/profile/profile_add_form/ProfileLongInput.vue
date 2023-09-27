@@ -26,7 +26,7 @@ export default {
 };
 </script>
 <template>
-  <div class="input-box form-group col-xs-12 col-md-6">
+  <div class="input-box form-group col-12">
     <label :for="inputId" class="login-input-label">
       {{ inputLabelText }}<span v-if="isRequired"> *</span>
     </label>

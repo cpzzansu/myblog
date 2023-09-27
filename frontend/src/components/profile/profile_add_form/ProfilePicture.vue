@@ -1,11 +1,63 @@
-<script></script>
+<script>
+import {computed, ref} from 'vue';
+import {useStore} from 'vuex';
+
+export default {
+  setup() {
+    const fileInput = ref(null);
+    const store = useStore();
+
+    const profilePictureStyle = computed(() => ({
+      backgroundImage: `url(${store.state.profilePicture})`,
+    }));
+
+    const uploadPicture = () => {
+      if (fileInput.value) {
+        fileInput.value.click();
+      }
+    };
+
+    const onFileChange = (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          store.commit('setProfilePicture', e.target.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    };
+
+    return {
+      profilePictureStyle,
+      fileInput,
+      uploadPicture,
+      onFileChange,
+    };
+  },
+  created() {
+    const imagePath = require('@/assets/person.png');
+    this.$store.commit('setProfilePicture', imagePath);
+  },
+};
+</script>
 <template>
-  <div class="profile-picture d-flex justify-content-center align-items-center">
+  <div
+    :style="profilePictureStyle"
+    class="profile-picture d-flex justify-content-center align-items-center"
+    @click="uploadPicture"
+  >
     <div
       class="camera-picture d-flex justify-content-center align-items-center"
     >
       <img src="../../../assets/profile-camera.svg" width="25" height="25" />
     </div>
+    <input
+      ref="fileInput"
+      type="file"
+      style="display: none"
+      @change="onFileChange"
+    />
   </div>
 </template>
 <style scoped>
@@ -19,6 +71,7 @@
   background-image: url('../../../assets/person.png');
   background-size: cover;
   margin-bottom: 50px;
+  cursor: pointer;
 }
 .camera-picture {
   position: absolute;

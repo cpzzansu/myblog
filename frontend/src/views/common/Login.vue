@@ -69,7 +69,6 @@ export default {
 </template>
 <style scoped>
 .login-div {
-  width: 1140px;
   margin-left: 15px;
   margin-right: 15px;
   height: 800px;

@@ -7,18 +7,16 @@ export default {
 </script>
 <template>
   <div class="profile-div container">
-    <div class="profie-main-div col-xs-12 col-12">
+    <div class="profile-main-div col-xs-12 col-lg-8">
       <ProfileMenuBar></ProfileMenuBar>
       <RouterView />
     </div>
   </div>
 </template>
-<style scoped>
+<style>
 .profile-div {
   margin-left: 15px;
   margin-right: 15px;
-  height: 800px;
-  width: 1170px;
   display: flex;
   justify-content: center;
   align-items: start;
