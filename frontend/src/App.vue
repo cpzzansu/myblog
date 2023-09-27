@@ -26,7 +26,7 @@ body {
     font-weight: 400;
     font-style: normal;
   }
-  font-family: Pretendard-Regular;
+  font-family: Pretendard-Regular, 'Apple SD Gothic Neo';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: flex;

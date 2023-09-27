@@ -20,7 +20,7 @@
 .login-button-font {
   color: black;
   font-size: 20px;
-  font-family: Pretendard;
+  font-family: Pretendard, 'Apple SD Gothic Neo';
   font-weight: 800;
   word-wrap: break-word;
 }

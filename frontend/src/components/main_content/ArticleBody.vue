@@ -116,7 +116,7 @@
 body {
   color: #d4d4dc;
   text-align: left;
-  font-family: "Pretendard", "sans-serif";
+  font-family: Pretendard-Regular, 'Apple SD Gothic Neo';
   font-weight: 400;
   letter-spacing: -0.02px;
   font-style: normal;
@@ -145,7 +145,7 @@ pre {
   background-color: #2a2a2f;
 }
 code {
-  font-family: Consolas, SFMono-Regular, Menlo, "PT Mono", "Liberation Mono",
+  font-family: Consolas, SFMono-Regular, Menlo, 'PT Mono', 'Liberation Mono',
     Courier, monospace;
 }
 </style>

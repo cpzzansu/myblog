@@ -48,7 +48,7 @@ export default {
   height: 50px;
   background: #363636;
   color: #f8f8f8;
-  font-family: Pretendard;
+  font-family: Pretendard, 'Apple SD Gothic Neo';
   font-size: 18px;
   border-radius: 10px;
   width: 100%;

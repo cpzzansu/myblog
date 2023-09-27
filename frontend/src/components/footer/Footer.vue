@@ -30,7 +30,7 @@ footer {
 }
 .company-name {
   padding-top: 70px;
-  font-family: Pretendard;
+  font-family: Pretendard, 'Apple SD Gothic Neo';
   font-weight: 700;
   font-size: 18px;
 }

@@ -6,7 +6,7 @@
 </template>
 <style scoped>
 .blog-title {
-  font-family: Pretendard;
+  font-family: Pretendard, 'Apple SD Gothic Neo';
   font-size: 40px;
   font-weight: 900;
   color: #fbfbfc;

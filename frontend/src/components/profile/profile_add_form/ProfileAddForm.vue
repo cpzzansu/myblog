@@ -1,5 +1,6 @@
 <script>
 import {defineComponent} from 'vue';
+import {useStore} from 'vuex';
 import ProfilePicture from '@/components/profile/profile_add_form/ProfilePicture.vue';
 import ProfileAddInput from '@/components/profile/profile_add_form/ProfileAddInput.vue';
 import ProfileLongInput from '@/components/profile/profile_add_form/ProfileLongInput.vue';
@@ -11,6 +12,36 @@ export default defineComponent({
     ProfilePicture,
     ProfileLongInput,
     ProfileFormButton,
+  },
+  setup() {
+    const store = useStore();
+    const inputName = (value) => {
+      store.commit('setMemberName', value);
+    };
+    const inputEmail = (value) => {
+      store.commit('setMemberEmail', value);
+    };
+    const inputPhone = (value) => {
+      store.commit('setMemberPhone', value);
+    };
+    const inputCompanyName = (value) => {
+      store.commit('setMemberCompanyName', value);
+    };
+    const inputDuty = (value) => {
+      store.commit('setMemberDuty', value);
+    };
+    const inputBiography = (value) => {
+      store.commit('setMemberBiography', value);
+    };
+
+    return {
+      inputName,
+      inputEmail,
+      inputPhone,
+      inputCompanyName,
+      inputDuty,
+      inputBiography,
+    };
   },
 });
 </script>
@@ -46,7 +77,7 @@ export default defineComponent({
         input-id="memberName"
         input-label-text="전화번호"
         input-type="text"
-        @input-value="inputName"
+        @input-value="inputPhone"
         :isRequired="false"
       ></ProfileAddInput>
     </div>
@@ -88,7 +119,7 @@ export default defineComponent({
 <style scoped>
 .profile-title {
   color: #efefef;
-  font-family: Pretendard;
+  font-family: Pretendard, 'Apple SD Gothic Neo';
   font-size: 20px;
 }
 .input-div > :first-child {
@@ -103,7 +134,7 @@ export default defineComponent({
 }
 .profile-sub-title {
   color: #efefef;
-  font-family: Pretendard;
+  font-family: Pretendard, 'Apple SD Gothic Neo';
   font-size: 20px;
   font-weight: 900;
   margin-top: 50px;

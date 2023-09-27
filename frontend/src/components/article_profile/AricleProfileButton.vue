@@ -24,7 +24,7 @@ export default {
 .profile-btn-font {
   color: black;
   font-size: 14px;
-  font-family: Pretendard;
+  font-family: Pretendard, 'Apple SD Gothic Neo';
   font-weight: 700;
   word-wrap: break-word;
 }

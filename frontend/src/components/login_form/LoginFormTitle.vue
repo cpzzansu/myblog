@@ -14,7 +14,7 @@
 .login-title-font {
   color: #d1d1d1;
   font-size: 20px;
-  font-family: Pretendard;
+  font-family: Pretendard, 'Apple SD Gothic Neo';
   font-weight: 700;
   word-wrap: break-word;
 }

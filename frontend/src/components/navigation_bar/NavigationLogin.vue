@@ -39,7 +39,7 @@ export default {
 .loginBtn {
   color: white;
   font-size: 16px;
-  font-family: Pretendard;
+  font-family: Pretendard, 'Apple SD Gothic Neo';
   font-weight: 400;
   word-wrap: break-word;
 }

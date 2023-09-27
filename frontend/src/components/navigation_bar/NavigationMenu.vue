@@ -23,7 +23,7 @@ export default {
 .menu {
   color: white;
   font-size: 16px;
-  font-family: Pretendard;
+  font-family: Pretendard, 'Apple SD Gothic Neo';
   font-weight: 800;
   word-wrap: break-word;
 }

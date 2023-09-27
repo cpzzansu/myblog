@@ -8,7 +8,7 @@ export default {
 </template>
 <style scoped>
 .menu-font {
-  font-family: Pretendard;
+  font-family: Pretendard, 'Apple SD Gothic Neo';
   font-size: 18px;
   font-weight: 900;
 }

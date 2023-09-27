@@ -1,6 +1,7 @@
 <script>
 import {computed, ref} from 'vue';
 import {useStore} from 'vuex';
+import person from '@/assets/person.png';
 
 export default {
   setup() {
@@ -28,16 +29,15 @@ export default {
       }
     };
 
+    const imagePath = ref(person);
+    store.commit('setProfilePicture', imagePath.value);
+
     return {
       profilePictureStyle,
       fileInput,
       uploadPicture,
       onFileChange,
     };
-  },
-  created() {
-    const imagePath = require('@/assets/person.png');
-    this.$store.commit('setProfilePicture', imagePath);
   },
 };
 </script>

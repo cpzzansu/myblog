@@ -16,7 +16,7 @@
   align-items: center;
 }
 .banner-font {
-  font-family: Pretendard-Regular;
+  font-family: Pretendard-Regular, 'Apple SD Gothic Neo';
   font-weight: 900;
   font-size: 80px;
 }

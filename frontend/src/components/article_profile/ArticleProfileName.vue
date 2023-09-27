@@ -32,7 +32,7 @@
 .member-name {
   color: white;
   font-size: 19px;
-  font-family: Pretendard;
+  font-family: Pretendard, 'Apple SD Gothic Neo';
   font-weight: 800;
   word-wrap: break-word;
   margin-left: 10px;
@@ -41,7 +41,7 @@
   color: #cccccc;
   margin-left: 5px;
   font-size: 5px;
-  font-family: Pretendard;
+  font-family: Pretendard, 'Apple SD Gothic Neo';
   font-weight: 400;
   word-wrap: break-word;
 }
@@ -63,7 +63,7 @@
   width: 200px;
   color: #cccccc;
   font-size: 15px;
-  font-family: Pretendard;
+  font-family: Pretendard, 'Apple SD Gothic Neo';
   font-weight: 400;
   word-wrap: break-word;
 }

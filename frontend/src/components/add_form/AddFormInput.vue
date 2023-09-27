@@ -46,7 +46,7 @@ export default {
 <style scoped>
 .login-input-label {
   color: #d1d1d1;
-  font-family: Pretendard;
+  font-family: Pretendard, 'Apple SD Gothic Neo';
   margin: 10px 10px;
   font-weight: 300;
   font-size: 14px;
@@ -58,6 +58,6 @@ span {
   color: #5dd9ff;
 }
 .login-input {
-  font-family: Pretendard;
+  font-family: Pretendard, 'Apple SD Gothic Neo';
 }
 </style>
