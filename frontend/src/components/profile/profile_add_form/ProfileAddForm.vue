@@ -8,12 +8,12 @@ export default defineComponent({
 });
 </script>
 <template>
-  <form class="container" action="/profile" method="post">
+  <form class="container d-flex row" action="/profile" method="post">
     <div class="form-row profile-title">멤버 프로필</div>
     <div class="d-flex justify-content-center">
       <ProfilePicture></ProfilePicture>
     </div>
-    <div class="d-flex input-div">
+    <div class="container d-flex input-div">
       <ProfileAddInput
         input-id="memberName"
         input-label-text="이름"
@@ -52,7 +52,5 @@ export default defineComponent({
 .form-row {
   display: flex;
   flex-wrap: wrap;
-  margin-right: -5px;
-  margin-left: -5px;
 }
 </style>

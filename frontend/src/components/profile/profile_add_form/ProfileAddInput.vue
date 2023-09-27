@@ -26,7 +26,7 @@ export default {
 };
 </script>
 <template>
-  <div class="input-box form-group col-md-6">
+  <div class="input-box form-group col-12 col-md-6">
     <label :for="inputId" class="login-input-label">
       {{ inputLabelText }}<span v-if="isRequired"> *</span>
     </label>
@@ -40,9 +40,12 @@ export default {
   </div>
 </template>
 <style scoped>
+.input-box {
+  padding-left: 10px;
+  padding-right: 10px;
+}
 .profile-add-input {
   height: 50px;
-  position: relative;
   background: #363636;
   color: #f8f8f8;
   font-family: Pretendard;
