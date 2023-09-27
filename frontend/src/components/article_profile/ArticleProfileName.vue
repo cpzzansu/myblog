@@ -5,7 +5,8 @@
     <div>
       <div class="d-flex align-items-center">
         <div class="member-name">이동훈</div>
-        <div class="member-job">서원닷컴 개발자</div>
+        <div class="member-job">서원닷컴</div>
+        <div class="member-job">개발자</div>
       </div>
       <div>
         <div class="profile-massage">

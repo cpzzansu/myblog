@@ -2,6 +2,7 @@
 import NavigationLogo from '@/components/navigation_bar/NavigationLogo.vue';
 import NavigationMenu from '@/components/navigation_bar/NavigationMenu.vue';
 import NavigationLogin from '@/components/navigation_bar/NavigationLogin.vue';
+import NavigationProfile from '@/components/navigation_bar/NavigationProfile.vue';
 
 export default {
   name: 'NavigationBar',
@@ -9,6 +10,7 @@ export default {
     NavigationLogo,
     NavigationMenu,
     NavigationLogin,
+    NavigationProfile,
   },
 };
 </script>
@@ -17,9 +19,10 @@ export default {
     <nav class="navbar navbar-content">
       <div class="container">
         <div class="navigation-div col-12">
-          <NavigationLogo></NavigationLogo>
-          <NavigationMenu :menu="'블로그'"></NavigationMenu>
-          <NavigationMenu :menu="'포트폴리오'"></NavigationMenu>
+          <NavigationLogo linkTo="/"></NavigationLogo>
+          <NavigationMenu menu="블로그" linkTo="/"></NavigationMenu>
+          <NavigationMenu menu="포트폴리오" linkTo="/"></NavigationMenu>
+          <navigationProfile></navigationProfile>
           <NavigationLogin></NavigationLogin>
         </div>
       </div>

@@ -1,25 +1,33 @@
 <script>
 export default {
   name: 'NavigationMenu',
-  props: ['menu']
-}
+  props: {
+    menu: String,
+    linkTo: String,
+  },
+};
 </script>
 <template>
   <div class="navigationMenu">
-    <div class="menu">{{ menu }}</div>
+    <RouterLink :to="linkTo" class="menu-link"
+      ><div class="menu">{{ menu }}</div></RouterLink
+    >
   </div>
 </template>
 <style scoped>
-.navigationMenu{
+.navigationMenu {
   height: 33px;
   display: flex;
   align-items: center;
 }
-.menu{
+.menu {
   color: white;
   font-size: 16px;
   font-family: Pretendard;
   font-weight: 800;
-  word-wrap: break-word
+  word-wrap: break-word;
+}
+.menu-link {
+  text-decoration: none;
 }
 </style>

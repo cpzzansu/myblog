@@ -18,11 +18,10 @@ export default {
 </script>
 <template>
   <div class="navigationLogin">
-    <router-link v-if="!isLoggedIn" class="login-link" to="login"
-      ><div class="loginBtn">로그인</div></router-link
-    >
-    <router-link v-if="isLoggedIn" class="login-link" to="login" @click="logout"
-      ><div class="loginBtn">로그아웃</div></router-link
+    <div v-if="!isLoggedIn" display="none">로그인</div>
+
+    <router-link v-if="isLoggedIn" class="login-link" to="profile"
+      ><div class="loginBtn">프로필</div></router-link
     >
   </div>
 </template>
@@ -31,6 +30,7 @@ export default {
   height: 33px;
   display: flex;
   align-items: center;
+  margin-left: auto;
 }
 .loginBtn {
   color: white;

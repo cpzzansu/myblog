@@ -12,10 +12,10 @@
   padding-bottom: 11px;
   background: #6eb8ed;
   border-radius: 4px;
-
   justify-content: center;
   align-items: center;
   display: flex;
+  cursor: pointer;
 }
 .login-button-font {
   color: black;

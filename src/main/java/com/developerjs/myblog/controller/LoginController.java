@@ -16,7 +16,7 @@ public class LoginController {
 
     private AuthenticationService authenticationService;
     @PostMapping("/login")
-    public ResponseEntity<?> save(@RequestBody Member member){
+    public ResponseEntity<?> login(@RequestBody Member member){
         try{
             System.out.println("hi");
             LoginAccessTokenResponse loginAccessTokenResponse =

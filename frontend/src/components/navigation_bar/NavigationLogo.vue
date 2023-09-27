@@ -1,9 +1,15 @@
 <template>
   <div class="logo">
-    <img class="logo-image" src="../../assets/logo.png" />
+    <RouterLink :to="linkTo" class="logo-link"
+      ><img class="logo-image" src="../../assets/logo.png"
+    /></RouterLink>
   </div>
 </template>
-<script></script>
+<script>
+export default {
+  props: ['linkTo'],
+};
+</script>
 <style scoped>
 .logo {
   width: 163px;
@@ -16,5 +22,8 @@
 .logo-image {
   width: 162px;
   height: 30px;
+}
+.logo-link {
+  text-decoration: none;
 }
 </style>

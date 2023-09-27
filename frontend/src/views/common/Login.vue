@@ -41,10 +41,17 @@ export default {
             this.$router.push('/login');
           }
         });
+      this.$store.commit('setLoginState', true);
+      this.$router.push('/');
     },
     loginMember(value) {
       this.member = value;
       console.log(this.member);
+    },
+  },
+  computed: {
+    isLoggedIn() {
+      return this.$store.state.isLoggedIn;
     },
   },
 };
