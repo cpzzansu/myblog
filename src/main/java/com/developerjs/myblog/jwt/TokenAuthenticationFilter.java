@@ -37,9 +37,9 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
             System.out.println(SecurityContextHolder.getContext().getAuthentication());
 
             // 인증 성공에 대한 응답 보내기
-            response.setStatus(HttpServletResponse.SC_OK);
-            response.getWriter().write("Authentication successful");
-            return;  // 여기서 반환하여 더 이상의 필터 처리를 중지
+//            response.setStatus(HttpServletResponse.SC_OK);
+//            response.getWriter().write("Authentication successful");
+//            return;  // 여기서 반환하여 더 이상의 필터 처리를 중지
         }
         filterChain.doFilter(request, response);
     }

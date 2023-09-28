@@ -5,6 +5,7 @@ import ProfilePicture from '@/components/profile/profile_add_form/ProfilePicture
 import ProfileAddInput from '@/components/profile/profile_add_form/ProfileAddInput.vue';
 import ProfileLongInput from '@/components/profile/profile_add_form/ProfileLongInput.vue';
 import ProfileFormButton from '@/components/profile/profile_add_form/ProfileFormButton.vue';
+import axios from 'axios';
 
 export default defineComponent({
   components: {
@@ -33,6 +34,46 @@ export default defineComponent({
     const inputBiography = (value) => {
       store.commit('setMemberBiography', value);
     };
+    const submitProfile = () => {
+      const memberEmail = store.state.memberEmail;
+      const memberName = store.state.memberName;
+      const memberCompanyName = store.state.memberCompanyName;
+      const memberDuty = store.state.memberDuty;
+      const memberBiography = store.state.memberBiography;
+      const profilePicture = store.state.profilePicture;
+
+      const memberProfileDto = {
+        memberEmail: memberEmail,
+        memberName: memberName,
+        memberCompanyName: memberCompanyName,
+        memberDuty: memberDuty,
+        memberBiography: memberBiography,
+        profilePicture: profilePicture,
+      };
+
+      const token = localStorage.getItem('accessToken');
+
+      axios
+        .post('/api/private/profile', memberProfileDto, {
+          headers: {
+            Authorization: 'Bearer ' + token,
+          },
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+
+    // 폼 전송에 사용될 store 변수 초기화
+    store.commit('setMemberName', null);
+    store.commit('setMemberEmail', null);
+    store.commit('setMemberPhone', null);
+    store.commit('setMemberCompanyName', null);
+    store.commit('setMemberDuty', null);
+    store.commit('setMemberBiography', null);
 
     return {
       inputName,
@@ -41,6 +82,7 @@ export default defineComponent({
       inputCompanyName,
       inputDuty,
       inputBiography,
+      submitProfile,
     };
   },
 });
@@ -48,7 +90,7 @@ export default defineComponent({
 <template>
   <form
     class="container d-flex row justify-content-center"
-    action="/profile"
+    action="/api/profile"
     method="post"
   >
     <div class="form-row profile-title">멤버 프로필</div>
@@ -112,7 +154,7 @@ export default defineComponent({
       ></ProfileLongInput>
     </div>
     <div class="col-md-6">
-      <ProfileFormButton></ProfileFormButton>
+      <ProfileFormButton @click="submitProfile"></ProfileFormButton>
     </div>
   </form>
 </template>

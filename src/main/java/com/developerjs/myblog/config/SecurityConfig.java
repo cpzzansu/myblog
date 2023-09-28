@@ -4,6 +4,7 @@ package com.developerjs.myblog.config;
 
 import com.developerjs.myblog.jwt.LoginAuthenticationFilter;
 import com.developerjs.myblog.jwt.TokenAuthenticationFilter;
+import com.developerjs.myblog.jwt.TokenProvider;
 import com.developerjs.myblog.service.MemberDetailsService;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -46,6 +47,10 @@ public class SecurityConfig {
 
     private final TokenAuthenticationFilter tokenAuthenticationFilter;
 
+    private TokenProvider tokenProvider;
+
+    private final JwtSecurityConfig jwtSecurityConfig;
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         LoginAuthenticationFilter loginAuthenticationFilter = loginAuthenticationFilter(authenticationManager);
@@ -73,14 +78,16 @@ public class SecurityConfig {
                 .and()
                 .authorizeHttpRequests() // HttpServletRequest를 사용하는 요청들에 대한 접근제한을 설정하겠다.
                 .requestMatchers("/member", "/login", "/token").permitAll()
-                .requestMatchers("/private/**").authenticated()
+                .requestMatchers("/private/**").hasRole("USER")
 
                 .and()
-                .addFilterAt(tokenAuthenticationFilter, BasicAuthenticationFilter.class)
                 .addFilter(loginAuthenticationFilter)
                 .logout()
                 .logoutSuccessUrl("http://localhost:8084/login")
-                .invalidateHttpSession(true);
+                .invalidateHttpSession(true)
+
+                .and()
+                .apply(jwtSecurityConfig);
 
 
         return httpSecurity.build();
