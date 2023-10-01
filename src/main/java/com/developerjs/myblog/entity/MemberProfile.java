@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -12,7 +13,7 @@ public class MemberProfile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "member_email", nullable = false, length = 50)
     private String memberEmail;
@@ -35,10 +36,22 @@ public class MemberProfile {
     @Column(name="original_file_name")
     private String originalFileName;
 
-    @Column(name = "stored_file_name", length = 500)
-    private String storedFileName;
+    @Column(name = "stored_file_path", length = 500)
+    private String storedFilePath;
+
+    @Column(name = "image_source_path", length = 500)
+    private String imageSourcePath;
 
     @Column(name = "file_size")
-    private int fileSize;
+    private Long fileSize;
 
+    @Column(name = "created_datetime")
+    private String createdDatetime;
+
+    @Column(name = "updated_datetime")
+    private String updatedDatetime;
+
+    public static MemberProfile createNewProfile() {
+        return new MemberProfile();
+    }
 }

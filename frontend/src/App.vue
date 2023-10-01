@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <NavigationBar></NavigationBar>
     <router-view></router-view>
     <Footer></Footer>
@@ -18,6 +18,8 @@ export default {
 </script>
 
 <style>
+@import '@/assets/global.scss';
+
 body {
   @font-face {
     font-family: 'Pretendard-Regular';
@@ -33,5 +35,16 @@ body {
   justify-content: center;
   text-align: center;
   background-color: #1c1c20 !important;
+}
+
+@media (min-width: 1400px) {
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl,
+  .container-xxl {
+    max-width: 1140px;
+  }
 }
 </style>

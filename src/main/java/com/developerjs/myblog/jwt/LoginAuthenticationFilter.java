@@ -62,6 +62,7 @@ public class LoginAuthenticationFilter extends UsernamePasswordAuthenticationFil
             throw new UsernameNotFoundException(username);
         }
         MemberEntity member = memberEntity.get();
+        System.out.println(member.toString());
         // 액세스 토큰 발행
         String accessToken = tokenProvider.generateToken(member, Duration.ofHours(2));
 

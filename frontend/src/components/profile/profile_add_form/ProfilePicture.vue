@@ -1,7 +1,6 @@
 <script>
 import {computed, ref} from 'vue';
 import {useStore} from 'vuex';
-import person from '@/assets/person.png';
 
 export default {
   setup() {
@@ -21,6 +20,7 @@ export default {
     const onFileChange = (event) => {
       const file = event.target.files[0];
       if (file) {
+        store.commit('setMemberProfilePicture', file);
         const reader = new FileReader();
         reader.onload = (e) => {
           store.commit('setProfilePicture', e.target.result);
@@ -28,9 +28,6 @@ export default {
         reader.readAsDataURL(file);
       }
     };
-
-    const imagePath = ref(person);
-    store.commit('setProfilePicture', imagePath.value);
 
     return {
       profilePictureStyle,

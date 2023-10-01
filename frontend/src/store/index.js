@@ -5,6 +5,7 @@ export default createStore({
     // 로그인 상태 확인
     isLoggedIn: false,
     profilePicture: null,
+    memberProfilePicture: null,
     memberName: null,
     memberEmail: null,
     memberPhone: null,
@@ -36,6 +37,9 @@ export default createStore({
     },
     setMemberBiography(state, payload) {
       state.memberBiography = payload;
+    },
+    setMemberProfilePicture(state, payload) {
+      state.memberProfilePicture = payload;
     },
   },
   actions: {},

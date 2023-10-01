@@ -17,6 +17,14 @@ export default {
       type: Boolean,
       required: true,
     },
+    isDisable: {
+      type: Boolean,
+      required: true,
+    },
+    value: {
+      type: String,
+      required: false,
+    },
   },
   methods: {
     emitInputValue(event) {
@@ -34,6 +42,8 @@ export default {
       :id="inputId"
       :name="inputId"
       :type="inputType"
+      :value="value"
+      :disabled="isDisable"
       class="form-control profile-add-input"
       @input="emitInputValue"
     />

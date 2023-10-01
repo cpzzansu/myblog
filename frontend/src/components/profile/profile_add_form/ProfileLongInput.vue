@@ -17,6 +17,10 @@ export default {
       type: Boolean,
       required: true,
     },
+    value: {
+      type: String,
+      required: false,
+    },
   },
   methods: {
     emitInputValue(event) {
@@ -34,6 +38,7 @@ export default {
       :id="inputId"
       :name="inputId"
       :type="inputType"
+      :value="value"
       class="form-control profile-add-input"
       @input="emitInputValue"
     />
