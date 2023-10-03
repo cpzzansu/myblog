@@ -3,7 +3,7 @@ package com.developerjs.myblog.config;
 
 
 import com.developerjs.myblog.jwt.LoginAuthenticationFilter;
-import com.developerjs.myblog.jwt.TokenAuthenticationFilter;
+
 import com.developerjs.myblog.jwt.TokenProvider;
 import com.developerjs.myblog.service.MemberDetailsService;
 import jakarta.servlet.http.HttpServletResponse;
@@ -20,7 +20,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -44,8 +43,6 @@ public class SecurityConfig {
     private UserDetailsService userDetailsService;
     private PasswordEncoder passwordEncoder;
     private AuthenticationManager authenticationManager;
-
-    private final TokenAuthenticationFilter tokenAuthenticationFilter;
 
     private TokenProvider tokenProvider;
 

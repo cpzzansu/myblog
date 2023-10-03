@@ -7,6 +7,7 @@ import axios from 'axios';
 import store from '@/store';
 import ProfileMain from '@/views/common/ProfileMain.vue';
 import ProfileAddForm from '@/components/profile/profile_add_form/ProfileAddForm.vue';
+import BlogWrite from '@/views/common/BlogWrite.vue';
 
 const routes = [
   {
@@ -40,6 +41,12 @@ const routes = [
         meta: {requiresAuth: true},
       },
     ],
+  },
+  {
+    path: '/blogWrite',
+    name: 'BlogWrite',
+    component: BlogWrite,
+    meta: {requiresAuth: true},
   },
 ];
 

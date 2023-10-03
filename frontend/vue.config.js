@@ -14,4 +14,11 @@ module.exports = defineConfig({
       },
     },
   },
+  configureWebpack: {
+    resolve: {
+      alias: {
+        codemirror$: 'codemirror/lib/codemirror.js',
+      },
+    },
+  },
 });
