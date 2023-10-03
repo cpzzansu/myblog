@@ -76,18 +76,6 @@ export default {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
-.editor-toolbar a {
-  display: inline-block;
-  text-align: center;
-  text-decoration: none !important;
-  color: #fcfcfc !important;
-  width: 30px;
-  height: 30px;
-  margin: 0;
-  border: 1px solid transparent;
-  border-radius: 3px;
-  cursor: pointer;
-}
 .blog-main-title.form-control {
   border: none;
   background-color: #333333;
