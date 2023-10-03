@@ -1,7 +1,7 @@
 <script></script>
 <template>
   <div>
-    <p class="description-title">#JavaScript</p>
+    <p class="description-title">#Blog</p>
   </div>
 </template>
 <style scoped>

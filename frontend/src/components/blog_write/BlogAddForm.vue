@@ -2,66 +2,44 @@
 import {ref, onMounted} from 'vue';
 import SimpleMDE from 'simplemde';
 import 'simplemde/dist/simplemde.min.css';
+import BlogAddButton from '@/components/blog_write/BlogAddButton.vue';
 
 export default {
   name: 'MarkdownEditor',
+  components: {BlogAddButton},
   setup() {
     let textArea = ref(null);
     let simplemde = ref(null); // Declare a reference for the SimpleMDE instance
 
+    const inputBlog = () => {
+      console.log(simplemde.value.value());
+    };
+
     onMounted(() => {
       simplemde.value = new SimpleMDE({
         element: textArea.value,
-        autofocus: true,
+        autofocus: false,
         autosave: {
           enabled: true,
-          uniqueId: 'MyUniqueID',
-          delay: 1000,
-        },
-        blockStyles: {
-          bold: '__',
-          italic: '_',
+          uniqueId: 'BlogWriteContent',
+          delay: 10000,
         },
         forceSync: true,
-        hideIcons: ['guide', 'heading'],
-        indentWithTabs: false,
-        initialValue: 'Hello world!',
-        insertTexts: {
-          horizontalRule: ['', '\n\n-----\n\n'],
-          image: ['![](http://', ')'],
-          link: ['[', '](http://)'],
-          table: [
-            '',
-            '\n\n| Column 1 | Column 2 | Column 3 |\n| -------- | -------- | -------- |\n| Text     | Text      | Text     |\n\n',
-          ],
-        },
         lineWrapping: true,
-        parsingConfig: {
-          allowAtxHeaderWithoutSpace: true,
-          strikethrough: false,
-          underscoresBreakWords: true,
-        },
-        placeholder: 'Type here...',
-        promptURLs: true,
-        renderingConfig: {
-          singleLineBreaks: false,
-          codeSyntaxHighlighting: true,
-        },
-        shortcuts: {
-          drawTable: 'Cmd-Alt-T',
-        },
-        showIcons: ['code', 'table'],
+        placeholder: '블로그 본문, 마크다운 형식으로 작성해주세요.',
         spellChecker: false,
         styleSelectedText: false,
         tabSize: 2,
         toolbar: false,
         toolbarTips: false,
       });
+      simplemde.value.codemirror.on('change', inputBlog);
     });
 
     return {
       textArea,
       simplemde, // Return the instance so that it can be referenced if needed
+      inputBlog,
     };
   },
 };
@@ -70,7 +48,13 @@ export default {
 <template>
   <form>
     <div class="form-group col-md-7">
-      <textarea ref="textArea"></textarea>
+      <textarea
+        class="blog-main-title form-control"
+        rows="2"
+        placeholder="제목을 입력하세요."
+      ></textarea>
+      <textarea ref="textArea" @input="inputBlog"></textarea>
+      <BlogAddButton></BlogAddButton>
     </div>
   </form>
 </template>
@@ -91,5 +75,35 @@ export default {
 .CodeMirror pre {
   white-space: pre-wrap;
   word-wrap: break-word;
+}
+.editor-toolbar a {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none !important;
+  color: #fcfcfc !important;
+  width: 30px;
+  height: 30px;
+  margin: 0;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.blog-main-title.form-control {
+  border: none;
+  background-color: #333333;
+  color: #fbfbfc;
+  font-size: 30px;
+  font-weight: 900;
+  border-radius: 15px;
+  margin-top: 60px;
+  margin-bottom: 30px;
+}
+.blog-main-title.form-control:focus {
+  border: none;
+  background-color: #333333;
+  color: #fbfbfc;
+}
+.blog-main-title.form-control::placeholder {
+  color: #c4c4c4;
 }
 </style>
