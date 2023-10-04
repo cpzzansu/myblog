@@ -3,6 +3,7 @@ import NavigationLogo from '@/components/navigation_bar/NavigationLogo.vue';
 import NavigationMenu from '@/components/navigation_bar/NavigationMenu.vue';
 import NavigationLogin from '@/components/navigation_bar/NavigationLogin.vue';
 import NavigationProfile from '@/components/navigation_bar/NavigationProfile.vue';
+import NavigationBlogWrite from '@/components/navigation_bar/NavigationBlogWrite.vue';
 
 export default {
   name: 'NavigationBar',
@@ -11,6 +12,7 @@ export default {
     NavigationMenu,
     NavigationLogin,
     NavigationProfile,
+    NavigationBlogWrite,
   },
 };
 </script>
@@ -22,6 +24,7 @@ export default {
           <NavigationLogo linkTo="/"></NavigationLogo>
           <NavigationMenu menu="블로그" linkTo="/"></NavigationMenu>
           <NavigationMenu menu="포트폴리오" linkTo="/"></NavigationMenu>
+          <NavigationBlogWrite></NavigationBlogWrite>
           <navigationProfile></navigationProfile>
           <NavigationLogin></NavigationLogin>
         </div>

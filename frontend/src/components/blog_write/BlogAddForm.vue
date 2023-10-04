@@ -3,21 +3,44 @@ import {ref, onMounted} from 'vue';
 import SimpleMDE from 'simplemde';
 import 'simplemde/dist/simplemde.min.css';
 import BlogAddButton from '@/components/blog_write/BlogAddButton.vue';
+import axios from 'axios';
 
 export default {
   name: 'MarkdownEditor',
   components: {BlogAddButton},
   setup() {
-    let textArea = ref(null);
+    let blogContent = ref(null);
     let simplemde = ref(null); // Declare a reference for the SimpleMDE instance
+    const blogTitle = ref(null);
 
-    const inputBlog = () => {
-      console.log(simplemde.value.value());
+    const addBlog = () => {
+      let bc = blogContent.value.value;
+      let bt = blogTitle.value.value;
+
+      const data = {
+        blogTitle: bt,
+        blogContent: bc,
+      };
+
+      const token = localStorage.getItem('accessToken');
+
+      axios
+        .post('/api/private/blog', data, {
+          headers: {
+            Authorization: 'Bearer ' + token,
+          },
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log('에러발생', error);
+        });
     };
 
     onMounted(() => {
       simplemde.value = new SimpleMDE({
-        element: textArea.value,
+        element: blogContent.value,
         autofocus: false,
         autosave: {
           enabled: true,
@@ -33,13 +56,13 @@ export default {
         toolbar: false,
         toolbarTips: false,
       });
-      simplemde.value.codemirror.on('change', inputBlog);
     });
 
     return {
-      textArea,
       simplemde, // Return the instance so that it can be referenced if needed
-      inputBlog,
+      blogContent,
+      blogTitle,
+      addBlog,
     };
   },
 };
@@ -49,12 +72,13 @@ export default {
   <form>
     <div class="form-group col-md-7">
       <textarea
+        ref="blogTitle"
         class="blog-main-title form-control"
         rows="2"
         placeholder="제목을 입력하세요."
       ></textarea>
-      <textarea ref="textArea" @input="inputBlog"></textarea>
-      <BlogAddButton></BlogAddButton>
+      <textarea ref="blogContent"></textarea>
+      <BlogAddButton @click="addBlog"></BlogAddButton>
     </div>
   </form>
 </template>

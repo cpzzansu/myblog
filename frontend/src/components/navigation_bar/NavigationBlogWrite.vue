@@ -20,8 +20,8 @@ export default {
   <div class="navigationLogin">
     <div v-if="!isLoggedIn" display="none">로그인</div>
 
-    <router-link v-if="isLoggedIn" class="login-link" to="/profile"
-      ><div class="loginBtn">프로필</div></router-link
+    <router-link v-if="isLoggedIn" class="login-link" to="/blogWrite"
+      ><div class="loginBtn">글쓰기</div></router-link
     >
   </div>
 </template>
@@ -30,6 +30,7 @@ export default {
   height: 33px;
   display: flex;
   align-items: center;
+  margin-left: auto;
 }
 .loginBtn {
   color: white;

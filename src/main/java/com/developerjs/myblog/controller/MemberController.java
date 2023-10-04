@@ -51,9 +51,7 @@ public class MemberController {
     @GetMapping("/private/profile")
     public MemberProfileDto getProfile(){
         // SecurityContext에서 Authentication 객체 가져오기
-        System.out.println("여기야");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println(authentication.getName());
         // Authentication 객체에서 principal 가져오기 (여기서는 userId)
         String userEmail = authentication.getName();
         return memberService.getProfile(userEmail);

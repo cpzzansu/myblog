@@ -65,11 +65,7 @@ export default defineComponent({
       if (memberProfilePicture) {
         formData.append('memberProfilePicture', memberProfilePicture);
       }
-
-      console.log(formData.get('memberProfilePicture'));
-      console.log('hi');
       const token = localStorage.getItem('accessToken');
-
       axios
         .post('/api/private/profile', formData, {
           headers: {
