@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @AllArgsConstructor
 @RestController
 public class BlogController {
@@ -18,8 +20,10 @@ public class BlogController {
         return blogService.addBlog(blogDto);
     }
 
-//    @GetMapping("/private/blog")
-//    public
+    @GetMapping("/private/blog")
+    public List<BlogDto> getBlog(){
+        return blogService.getBlog();
+    }
 
 
     @GetMapping("/private/blog/{id}")

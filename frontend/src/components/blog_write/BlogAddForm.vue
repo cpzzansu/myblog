@@ -45,7 +45,7 @@ export default {
         autosave: {
           enabled: true,
           uniqueId: 'BlogWriteContent',
-          delay: 10000,
+          delay: 1000,
         },
         forceSync: true,
         lineWrapping: true,
