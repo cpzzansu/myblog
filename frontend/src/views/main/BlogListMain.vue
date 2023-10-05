@@ -44,9 +44,12 @@ export default defineComponent({
             <div class="list-content">
               {{ blog.blogContent }}
             </div>
-            <BlogListProfile
-              :memberProfileDto="blog.memberProfileDto"
-            ></BlogListProfile>
+            <div class="d-flex align-items-center">
+              <BlogListProfile
+                :memberProfileDto="blog.memberProfileDto"
+              ></BlogListProfile>
+              <div class="blog-regist-time">{{ blog.blogRegistTime }}</div>
+            </div>
           </router-link>
         </div>
       </div>
@@ -104,5 +107,12 @@ export default defineComponent({
 }
 .blog-div {
   text-decoration: none;
+}
+.blog-regist-time {
+  color: #cecece;
+  padding-bottom: 7px;
+  margin-left: auto;
+  margin-right: 30px;
+  font-size: 15px;
 }
 </style>

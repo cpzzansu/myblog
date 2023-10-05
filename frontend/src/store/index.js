@@ -55,8 +55,9 @@ export default createStore({
     async fetchData({commit}) {
       const token = localStorage.getItem('accessToken');
 
-      function stripHTMLTags(input) {
-        return input.replace(/<\/?[^>]+(>|$)/g, '');
+      function stripHTMLTagsTruncatedText(input) {
+        let text = input.replace(/<\/?[^>]+(>|$)/g, '');
+        return text.length > 100 ? text.substring(0, 100) + '...' : text;
       }
 
       const response = await axios.get('/api/private/blog', {
@@ -67,7 +68,7 @@ export default createStore({
 
       response.data = response.data.map((item) => ({
         ...item,
-        blogContent: stripHTMLTags(item.blogContent),
+        blogContent: stripHTMLTagsTruncatedText(item.blogContent),
       }));
 
       commit('setBlogs', response.data);

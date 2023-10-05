@@ -54,7 +54,6 @@ export default {
 <style scoped>
 .profile-name-div {
   height: 80px;
-  width: 100%;
   padding-top: 15px;
   padding-bottom: 20px;
   background: #00000000;
