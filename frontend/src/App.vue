@@ -18,8 +18,6 @@ export default {
 </script>
 
 <style>
-@import '@/assets/global.scss';
-
 body {
   @font-face {
     font-family: 'Pretendard-Regular';

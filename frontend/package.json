@@ -17,6 +17,7 @@
     "core-js": "^3.8.3",
     "dompurify": "^3.0.6",
     "marked": "^9.1.0",
+    "prismjs": "^1.29.0",
     "rehype-stringify": "^10.0.0",
     "remark-html": "^16.0.1",
     "remark-parse": "^11.0.0",
