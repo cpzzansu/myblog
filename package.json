@@ -1,5 +1,5 @@
 {
-  "dependencies": {
-    "marked": "^9.0.3"
+  "devDependencies": {
+    "@babel/plugin-transform-private-methods": "^7.22.5"
   }
 }

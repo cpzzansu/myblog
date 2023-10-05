@@ -5,7 +5,7 @@ import Footer from '@/components/footer/Footer.vue';
 import ArticleProfile from '@/components/article_profile/AricleProfile.vue';
 
 export default {
-  name: 'HomePage',
+  name: 'blogDetail',
   components: {
     BannerImage,
     MainContent,

@@ -3,6 +3,8 @@ import DescriptionTitle from '@/components/main_content/DescriptionTitle.vue';
 import BlogTitle from '@/components/main_content/BlogTitle.vue';
 import BlogRegistDate from '@/components/main_content/BlogRegistDate.vue';
 import ArticleBody from '@/components/main_content/ArticleBody.vue';
+import {onMounted} from 'vue';
+import {useStore} from 'vuex';
 
 export default {
   components: {
@@ -10,6 +12,12 @@ export default {
     BlogTitle,
     BlogRegistDate,
     ArticleBody,
+  },
+  setup() {
+    onMounted(() => {
+      const store = useStore();
+      console.log(store.state.blogDetail);
+    });
   },
 };
 </script>

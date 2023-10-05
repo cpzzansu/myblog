@@ -1,4 +1,5 @@
 import {createStore} from 'vuex';
+import axios from 'axios';
 
 export default createStore({
   state: {
@@ -12,6 +13,8 @@ export default createStore({
     memberCompanyName: null,
     memberDuty: null,
     memberBiography: null,
+    blogs: null,
+    blogDetail: null,
   },
   mutations: {
     setLoginState(state, status) {
@@ -41,7 +44,46 @@ export default createStore({
     setMemberProfilePicture(state, payload) {
       state.memberProfilePicture = payload;
     },
+    setBlogs(state, payload) {
+      state.blogs = payload;
+    },
+    setBlogDetail(state, payload) {
+      state.blogDetail = payload;
+    },
   },
-  actions: {},
+  actions: {
+    async fetchData({commit}) {
+      const token = localStorage.getItem('accessToken');
+
+      function stripHTMLTags(input) {
+        return input.replace(/<\/?[^>]+(>|$)/g, '');
+      }
+
+      const response = await axios.get('/api/private/blog', {
+        headers: {
+          Authorization: 'Bearer ' + token,
+        },
+      });
+
+      response.data = response.data.map((item) => ({
+        ...item,
+        blogContent: stripHTMLTags(item.blogContent),
+      }));
+
+      commit('setBlogs', response.data);
+    },
+
+    async blogDetail({commit}, blogId) {
+      const token = localStorage.getItem('accessToken');
+
+      const response = await axios.get(`/api/private/blog/${blogId}`, {
+        headers: {
+          Authorization: 'Bearer ' + token,
+        },
+      });
+
+      commit('setBlogDetail', response.data);
+    },
+  },
   getters: {},
 });

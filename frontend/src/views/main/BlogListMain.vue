@@ -1,28 +1,17 @@
 <script>
 import {defineComponent, onMounted, ref} from 'vue';
 import BlogListProfile from '@/components/blog_list/BlogListProfile.vue';
-import axios from 'axios';
+import BannerImage from '@/components/banner/BannerImage.vue';
+import {useStore} from 'vuex';
 
 export default defineComponent({
-  components: {BlogListProfile},
+  components: {BannerImage, BlogListProfile},
   setup() {
-    const token = localStorage.getItem('accessToken');
     const blogs = ref([]);
+    const store = useStore();
+
     onMounted(() => {
-      const response = axios.get('/api/private/blog', {
-        headers: {
-          Authorization: 'Bearer ' + token,
-        },
-      });
-
-      response.then((res) => {
-        blogs.value = res.data;
-        console.log(blogs);
-      });
-
-      response.catch((error) => {
-        console.log(error);
-      });
+      blogs.value = store.state.blogs;
     });
 
     return {
@@ -32,27 +21,33 @@ export default defineComponent({
 });
 </script>
 <template>
-  <div class="d-flex justify-content-center">
+  <div class="d-flex justify-content-center row">
+    <BannerImage class="col-12"></BannerImage>
     <div class="col-md-9">
       <div class="d-flex align-items-center total-div">
         <div class="total-font">전체</div>
-        <div class="total-number">4000</div>
+        <div class="total-number">{{ blogs.length }}</div>
       </div>
       <div v-for="blog in blogs" :key="blog.id">
         <div class="blog-list-main">
-          <div class="d-flex">
-            <div class="description-title">#자바스크립트</div>
-            <div class="description-title">#자바스크립트</div>
-          </div>
-          <div class="list-title">
-            {{ blog.blogTitle }}
-          </div>
-          <div class="list-content">
-            {{ blog.blogContent }}
-          </div>
-          <BlogListProfile
-            :memberProfileDto="blog.memberProfileDto"
-          ></BlogListProfile>
+          <router-link
+            :to="{name: 'blog', params: {id: blog.id}}"
+            class="blog-div"
+          >
+            <div class="d-flex">
+              <div class="description-title">#자바스크립트</div>
+              <div class="description-title">#자바스크립트</div>
+            </div>
+            <div class="list-title">
+              {{ blog.blogTitle }}
+            </div>
+            <div class="list-content">
+              {{ blog.blogContent }}
+            </div>
+            <BlogListProfile
+              :memberProfileDto="blog.memberProfileDto"
+            ></BlogListProfile>
+          </router-link>
         </div>
       </div>
     </div>
@@ -76,6 +71,7 @@ export default defineComponent({
   font-size: 26px;
 }
 .total-div {
+  margin-top: 100px;
   margin-bottom: 20px;
 }
 .description-title {
@@ -105,5 +101,8 @@ export default defineComponent({
   font-style: normal;
   margin-left: 12px;
   margin-right: 12px;
+}
+.blog-div {
+  text-decoration: none;
 }
 </style>

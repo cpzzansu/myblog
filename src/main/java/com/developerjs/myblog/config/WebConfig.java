@@ -12,8 +12,8 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry){
         registry.addResourceHandler("/images/**")
-                .addResourceLocations("file:/Users/kimjunsu/images/"); //맥용
-//                .addResourceLocations("file:/Users/user/images/"); // 윈도우용
+//                .addResourceLocations("file:/Users/kimjunsu/images/"); //맥용
+                .addResourceLocations("file:/Users/user/images/"); // 윈도우용
     }
 
     public void addCorsMappings(CorsRegistry registry){

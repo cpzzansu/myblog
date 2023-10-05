@@ -28,9 +28,6 @@ public class BlogController {
 
     @GetMapping("/private/blog/{id}")
     public BlogDto getBlogDetail(@PathVariable Long id){
-
-
-
-        return null;
+        return blogService.getBlogDetail(id);
     }
 }

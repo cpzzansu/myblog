@@ -1,6 +1,5 @@
 // router/index.js
 import {createRouter, createWebHistory} from 'vue-router';
-import Home from '@/views/main/Home.vue';
 import Login from '@/views/common/Login.vue';
 import AddMember from '@/views/common/AddMember.vue';
 import axios from 'axios';
@@ -8,13 +7,23 @@ import store from '@/store';
 import ProfileMain from '@/views/common/ProfileMain.vue';
 import ProfileAddForm from '@/components/profile/profile_add_form/ProfileAddForm.vue';
 import BlogWrite from '@/views/common/BlogWrite.vue';
-import BlogListMain from '@/components/blog_list/BlogListMain.vue';
+import BlogListMain from '@/views/main/BlogListMain.vue';
+import BlogContentMain from '@/views/main/BlogContentMain.vue';
 
 const routes = [
   {
     path: '/',
-    name: 'HomePage',
-    component: Home,
+    name: 'blogList',
+    component: BlogListMain,
+    beforeEnter: async (to, from, next) => {
+      try {
+        await store.dispatch('fetchData');
+        next();
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        next(false);
+      }
+    },
     meta: {isHome: true},
   },
   {
@@ -50,9 +59,19 @@ const routes = [
     meta: {requiresAuth: true},
   },
   {
-    path: '/blogList',
-    name: 'BlogList',
-    component: BlogListMain,
+    path: '/blog/:id',
+    name: 'blog',
+    component: BlogContentMain,
+    beforeEnter: async (to, from, next) => {
+      try {
+        const currentId = to.params.id;
+        await store.dispatch('blogDetail', currentId);
+        next();
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        next(false);
+      }
+    },
     meta: {requiresAuth: true},
   },
 ];
