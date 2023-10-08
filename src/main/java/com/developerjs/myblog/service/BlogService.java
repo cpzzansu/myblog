@@ -1,5 +1,6 @@
 package com.developerjs.myblog.service;
 
+import com.developerjs.myblog.common.FileUtils;
 import com.developerjs.myblog.dto.BlogDto;
 import com.developerjs.myblog.dto.MemberProfileDto;
 import com.developerjs.myblog.entity.Blog;
@@ -16,6 +17,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -30,6 +32,7 @@ public class BlogService {
 
     private final BlogRepository blogRepository;
     private final MemberProfileRepository memberProfileRepository;
+    private final FileUtils fileUtils;
 
     public ResponseEntity<?> addBlog(BlogDto blogDto){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -105,4 +108,13 @@ public class BlogService {
     }
 
 
+    public ResponseEntity<?> addBlogImage(MultipartFile image) throws Exception {
+        List<MultipartFile> files = new ArrayList<>();
+        files.add(image);
+        fileUtils.parseFileInfo(files);
+
+
+
+        return ResponseEntity.ok("이미지 업로드 잘 되었습니다.");
+    }
 }

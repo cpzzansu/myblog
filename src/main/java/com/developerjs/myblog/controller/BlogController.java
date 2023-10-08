@@ -5,6 +5,7 @@ import com.developerjs.myblog.service.BlogService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -29,5 +30,10 @@ public class BlogController {
     @GetMapping("/private/blog/{id}")
     public BlogDto getBlogDetail(@PathVariable Long id){
         return blogService.getBlogDetail(id);
+    }
+
+    @PostMapping("/private/blog/image")
+    public ResponseEntity<?> addBlogImage(@RequestParam(name = "image") MultipartFile image) throws Exception {
+        return blogService.addBlogImage(image);
     }
 }
