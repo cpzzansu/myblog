@@ -7,7 +7,10 @@
 <style>
 .login-button {
   height: 60px;
+  width: 200px;
   margin-top: 80px;
+  margin-left: auto;
+  margin-right: 0;
   padding-top: 10px;
   padding-bottom: 11px;
   background: #6eb8ed;

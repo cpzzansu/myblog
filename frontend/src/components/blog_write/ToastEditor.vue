@@ -26,7 +26,7 @@ export default {
       el: this.$refs.editorElement,
       previewStyle: 'vertical',
       initialEditType: 'wysiwyg',
-      height: '500px',
+      height: '600px',
       initialValue: this.initialContent,
       theme: 'dark',
       hooks: {

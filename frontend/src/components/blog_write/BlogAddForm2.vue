@@ -46,14 +46,14 @@ export default {
 
 <template>
   <form>
-    <div class="form-group col-md-7">
+    <div class="form-group col-md-12">
       <textarea
         ref="blogTitle"
         class="blog-main-title form-control"
         rows="2"
         placeholder="제목을 입력하세요."
       ></textarea>
-      <ToastEditor :initialContent="'## Hello World'"></ToastEditor>
+      <ToastEditor :initialContent="''"></ToastEditor>
       <BlogAddButton @click="addBlog"></BlogAddButton>
     </div>
   </form>
@@ -93,5 +93,29 @@ export default {
 }
 .blog-main-title.form-control::placeholder {
   color: #c4c4c4;
+}
+.toastui-editor-defaultUI {
+  border-radius: 15px;
+  font-family: Pretendard, 'Apple SD Gothic Neo';
+}
+.toastui-editor-defaultUI-toolbar {
+  border-radius: 15px 15px 0 0;
+}
+.toastui-editor-mode-switch {
+  border-radius: 0 0 15px 15px;
+}
+.toastui-editor-dark .toastui-editor-md-container,
+.toastui-editor-dark .toastui-editor-ww-container {
+  background-color: #333333;
+}
+.toastui-editor-contents {
+  font-family: Pretendard-Regular, 'Apple SD Gothic Neo';
+  font-size: 17px;
+  font-width: 300;
+}
+.ProseMirror {
+  font-family: Pretendard-Regular, 'Apple SD Gothic Neo';
+  font-size: 17px;
+  font-width: 300;
 }
 </style>

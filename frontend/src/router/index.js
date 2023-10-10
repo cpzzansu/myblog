@@ -4,11 +4,12 @@ import Login from '@/views/common/Login.vue';
 import AddMember from '@/views/common/AddMember.vue';
 import axios from 'axios';
 import store from '@/store';
-import ProfileMain from '@/views/common/ProfileMain.vue';
+import ProfileMain from '@/views/profile/ProfileMain.vue';
 import ProfileAddForm from '@/components/profile/profile_add_form/ProfileAddForm.vue';
 import BlogWrite from '@/views/common/BlogWrite.vue';
 import BlogListMain from '@/views/main/BlogListMain.vue';
 import BlogContentMain from '@/views/main/BlogContentMain.vue';
+import MyBlog from '@/components/profile/profile_myblog/MyBlog.vue';
 
 const routes = [
   {
@@ -48,6 +49,12 @@ const routes = [
         path: 'addForm',
         name: 'ProfileAddForm',
         component: ProfileAddForm,
+        meta: {requiresAuth: true},
+      },
+      {
+        path: '',
+        name: 'myBlog',
+        component: MyBlog,
         meta: {requiresAuth: true},
       },
     ],
