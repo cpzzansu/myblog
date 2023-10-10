@@ -11,5 +11,6 @@
   font-size: 20px;
   font-weight: 900;
   margin-top: 50px;
+  margin-left: 15px;
 }
 </style>
