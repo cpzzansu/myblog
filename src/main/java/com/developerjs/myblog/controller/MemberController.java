@@ -20,6 +20,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
+@CrossOrigin(origins = "http://144.24.73.164:8088")
 public class MemberController {
 
     private MemberService memberService;

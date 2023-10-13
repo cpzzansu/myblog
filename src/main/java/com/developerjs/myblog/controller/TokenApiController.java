@@ -6,12 +6,14 @@ import com.developerjs.myblog.service.TokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
+@CrossOrigin(origins = "http://144.24.73.164:8088")
 public class TokenApiController {
 
     private final TokenService tokenService;

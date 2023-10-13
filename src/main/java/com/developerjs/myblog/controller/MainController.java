@@ -1,10 +1,12 @@
 package com.developerjs.myblog.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@CrossOrigin(origins = "http://144.24.73.164:8088")
 public class MainController {
 
     @RequestMapping({ "/" })
