@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
 
     private AuthenticationService authenticationService;
-    @PostMapping("/login")
+    @PostMapping("/api/login")
     public ResponseEntity<?> login(@RequestBody Member member){
         try{
             System.out.println("hi");
