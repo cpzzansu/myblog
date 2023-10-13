@@ -4,11 +4,11 @@ module.exports = defineConfig({
   devServer: {
     port: 8084,
     proxy: {
-      '/api': {
+      'http://localhost:90': {
         target: 'http://localhost:90', // 스프링 부트 서버 주소
         changeOrigin: true,
         pathRewrite: {
-          '^/api': '',
+          '^http://localhost:90': '',
         },
       },
     },

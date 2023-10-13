@@ -60,7 +60,7 @@ export default createStore({
         return text.length > 100 ? text.substring(0, 100) + '...' : text;
       }
 
-      const response = await axios.get('/api/private/blog', {
+      const response = await axios.get('http://localhost:90/private/blog', {
         headers: {
           Authorization: 'Bearer ' + token,
         },
@@ -77,11 +77,14 @@ export default createStore({
     async blogDetail({commit}, blogId) {
       const token = localStorage.getItem('accessToken');
 
-      const response = await axios.get(`/api/private/blog/${blogId}`, {
-        headers: {
-          Authorization: 'Bearer ' + token,
+      const response = await axios.get(
+        `http://localhost:90/private/blog/${blogId}`,
+        {
+          headers: {
+            Authorization: 'Bearer ' + token,
+          },
         },
-      });
+      );
 
       commit('setBlogDetail', response.data);
     },

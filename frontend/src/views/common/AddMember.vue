@@ -14,7 +14,7 @@ export default defineComponent({
   methods: {
     async save() {
       await axios
-        .post('/api/member', this.member, {
+        .post('http://localhost:90/member', this.member, {
           headers: {
             Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
           },

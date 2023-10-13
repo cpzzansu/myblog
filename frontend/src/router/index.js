@@ -90,7 +90,7 @@ const router = createRouter({
 
 async function verifyToken(token) {
   try {
-    await axios.get('/api/private/resource', {
+    await axios.get('http://localhost:90/private/resource', {
       headers: {
         Authorization: 'Bearer ' + token,
       },
@@ -108,7 +108,10 @@ async function verifyToken(token) {
 async function refreshToken() {
   const refreshToken = localStorage.getItem('refreshToken');
   try {
-    const response = await axios.post('/api/token', refreshToken);
+    const response = await axios.post(
+      'http://localhost:90/token',
+      refreshToken,
+    );
     const data = response.data;
     const accessToken = data.accessToken;
     console.log('토큰 새로 발급받음');

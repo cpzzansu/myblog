@@ -25,7 +25,7 @@ export default {
     memberDuty.value = props.memberProfileDto.memberDuty;
     imageSourcePath.value = props.memberProfileDto.imageSourcePath;
     if (imageSourcePath.value !== '' && imageSourcePath.value !== null) {
-      let imageSource = '/api' + imageSourcePath.value;
+      let imageSource = 'http://localhost:90' + imageSourcePath.value;
       store.commit('setProfilePicture', imageSource);
     }
 
