@@ -25,12 +25,12 @@ public class MemberController {
 
     private MemberService memberService;
     private FileUtils fileUtils;
-    @PostMapping("/api/member")
+    @PostMapping("/member")
     public void save(@RequestBody Member member){
         memberService.save(member);
     }
 
-    @PostMapping("/api/private/profile")
+    @PostMapping("/private/profile")
     public ResponseEntity<?> modifyProfile(@RequestParam("memberEmail") String memberEmail,
                                       @RequestParam("memberName") String memberName,
                                       @RequestParam("memberPhone") String memberPhone,
@@ -49,7 +49,7 @@ public class MemberController {
         return memberService.modifyMemberProfile(memberProfileDto, memberEmail, memberProfilePicture);
     }
 
-    @GetMapping("/api/private/profile")
+    @GetMapping("/private/profile")
     public MemberProfileDto getProfile(){
         // SecurityContext에서 Authentication 객체 가져오기
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -58,7 +58,7 @@ public class MemberController {
         return memberService.getProfile(userEmail);
     }
 
-    @GetMapping("/api/private/resource")
+    @GetMapping("/private/resource")
     public ResponseEntity<?> auth(){
         return new ResponseEntity<>(HttpStatus.OK);
     }

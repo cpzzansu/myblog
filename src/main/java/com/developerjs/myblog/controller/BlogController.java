@@ -16,24 +16,24 @@ public class BlogController {
 
     private final BlogService blogService;
 
-    @PostMapping("/api/private/blog")
+    @PostMapping("/private/blog")
     public ResponseEntity<?> addBlog(@RequestBody BlogDto blogDto){
         System.out.println(blogDto.toString());
         return blogService.addBlog(blogDto);
     }
 
-    @GetMapping("/api/private/blog")
+    @GetMapping("/private/blog")
     public List<BlogDto> getBlog(){
         return blogService.getBlog();
     }
 
 
-    @GetMapping("/api/private/blog/{id}")
+    @GetMapping("/private/blog/{id}")
     public BlogDto getBlogDetail(@PathVariable Long id){
         return blogService.getBlogDetail(id);
     }
 
-    @PostMapping("/api/private/blog/image")
+    @PostMapping("/private/blog/image")
     public ResponseEntity<?> addBlogImage(@RequestParam(name = "image") MultipartFile image) throws Exception {
         return blogService.addBlogImage(image);
     }
