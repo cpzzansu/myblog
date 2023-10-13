@@ -23,7 +23,7 @@ export default {
   methods: {
     async login() {
       await axios
-        .post('http://localhost:90/login', this.member, {
+        .post('/api/login', this.member, {
           headers: {
             Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
           },

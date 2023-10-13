@@ -20,7 +20,7 @@ export default {
     onMounted(async () => {
       const token = localStorage.getItem('accessToken');
       await axios
-        .get('http://localhost:90/private/profile', {
+        .get('/api/private/profile', {
           headers: {
             Authorization: 'Bearer ' + token,
           },
@@ -33,7 +33,7 @@ export default {
           memberBiography.value = data.memberBiography;
           imageSourcePath.value = data.imageSourcePath;
           if (imageSourcePath.value !== '' && imageSourcePath.value !== null) {
-            let imageSource = 'http://localhost:90' + imageSourcePath.value;
+            let imageSource = '/api' + imageSourcePath.value;
             store.commit('setProfilePicture', imageSource);
           }
         })

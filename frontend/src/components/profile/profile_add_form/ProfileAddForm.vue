@@ -67,7 +67,7 @@ export default defineComponent({
       }
       const token = localStorage.getItem('accessToken');
       axios
-        .post('http://localhost:90/private/profile', formData, {
+        .post('/api/private/profile', formData, {
           headers: {
             Authorization: 'Bearer ' + token,
             'Content-Type': 'multipart/form-data',
@@ -84,14 +84,11 @@ export default defineComponent({
     onMounted(async () => {
       try {
         const token = localStorage.getItem('accessToken');
-        const response = await axios.get(
-          'http://localhost:90/private/profile',
-          {
-            headers: {
-              Authorization: 'Bearer ' + token,
-            },
+        const response = await axios.get('/api/private/profile', {
+          headers: {
+            Authorization: 'Bearer ' + token,
           },
-        );
+        });
         const data = response.data;
 
         memberEmail.value = data.memberEmail;
@@ -109,7 +106,7 @@ export default defineComponent({
         imageSourcePath.value = data.imageSourcePath;
 
         if (imageSourcePath.value !== '' && imageSourcePath.value !== null) {
-          let imageSource = 'http://localhost:90' + imageSourcePath.value;
+          let imageSource = '/api' + imageSourcePath.value;
           store.commit('setProfilePicture', imageSource);
         } else {
           const imagePath = ref(person);
@@ -141,7 +138,7 @@ export default defineComponent({
 <template>
   <form
     class="container d-flex row justify-content-center"
-    action="http://localhost:90/profile"
+    action="/api/profile"
     method="post"
   >
     <div class="form-row profile-title">멤버 프로필</div>

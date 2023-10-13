@@ -21,7 +21,7 @@ export default {
       const token = localStorage.getItem('accessToken');
 
       axios
-        .post('http://localhost:90/private/blog', data, {
+        .post('/api/private/blog', data, {
           headers: {
             Authorization: 'Bearer ' + token,
           },

@@ -36,7 +36,7 @@ export default {
           console.log(formData.get('image'));
           try {
             const response = await axios.post(
-              'http://localhost:90/private/blog/image',
+              '/api/private/blog/image',
               formData,
             );
 

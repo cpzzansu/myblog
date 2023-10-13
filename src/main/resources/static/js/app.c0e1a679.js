@@ -531,7 +531,7 @@
             },
             methods: {
               async login() {
-                await et.Z.post("http://localhost:90/login", this.member, {
+                await et.Z.post("/api/login", this.member, {
                   headers: {
                     Authorization:
                       "Bearer " + localStorage.getItem("accessToken"),
@@ -750,7 +750,7 @@
             },
             methods: {
               async save() {
-                await et.Z.post("http://localhost:90/member", this.member, {
+                await et.Z.post("/api/member", this.member, {
                   headers: {
                     Authorization:
                       "Bearer " + localStorage.getItem("accessToken"),
@@ -834,7 +834,7 @@
                   let t = e.replace(/<\/?[^>]+(>|$)/g, "");
                   return t.length > 100 ? t.substring(0, 100) + "..." : t;
                 }
-                const i = await et.Z.get("http://localhost:90/private/blog", {
+                const i = await et.Z.get("/api/private/blog", {
                   headers: { Authorization: "Bearer " + n },
                 });
                 (i.data = i.data.map((e) => ({
@@ -846,7 +846,7 @@
               async blogDetail(e, t) {
                 let { commit: n } = e;
                 const o = localStorage.getItem("accessToken"),
-                  i = await et.Z.get(`http://localhost:90/private/blog/${t}`, {
+                  i = await et.Z.get(`/api/private/blog/${t}`, {
                     headers: { Authorization: "Bearer " + o },
                   });
                 n("setBlogDetail", i.data);
@@ -988,7 +988,7 @@
           ),
           dn = {
             class: "container d-flex row justify-content-center",
-            action: "http://localhost:90/profile",
+            action: "/api/profile",
             method: "post",
           },
           pn = cn(() =>
@@ -1407,7 +1407,7 @@
                     s.append("memberBiography", a),
                     l && s.append("memberProfilePicture", l);
                   const u = localStorage.getItem("accessToken");
-                  et.Z.post("http://localhost:90/private/profile", s, {
+                  et.Z.post("/api/private/profile", s, {
                     headers: {
                       Authorization: "Bearer " + u,
                       "Content-Type": "multipart/form-data",
@@ -1424,10 +1424,9 @@
                 (0, i.bv)(async () => {
                   try {
                     const i = localStorage.getItem("accessToken"),
-                      u = await et.Z.get(
-                        "http://localhost:90/private/profile",
-                        { headers: { Authorization: "Bearer " + i } },
-                      ),
+                      u = await et.Z.get("/api/private/profile", {
+                        headers: { Authorization: "Bearer " + i },
+                      }),
                       m = u.data;
                     if (
                       ((t.value = m.memberEmail),
@@ -1445,7 +1444,7 @@
                       (s.value = m.imageSourcePath),
                       "" !== s.value && null !== s.value)
                     ) {
-                      let t = "http://localhost:90" + s.value;
+                      let t = "/api" + s.value;
                       e.commit("setProfilePicture", t);
                     } else {
                       const t = (0, In.iH)(Xn);
@@ -1556,10 +1555,7 @@
                     const n = new FormData();
                     n.append("image", e), console.log(n.get("image"));
                     try {
-                      const e = await et.Z.post(
-                        "http://localhost:90/private/blog/image",
-                        n,
-                      );
+                      const e = await et.Z.post("/api/private/blog/image", n);
                       t(e.data.imageUrl, "alt text");
                     } catch (o) {
                       console.error("Image upload failed:", o);
@@ -1584,7 +1580,7 @@
                   let t = e.value.value;
                   const n = { blogTitle: t },
                     o = localStorage.getItem("accessToken");
-                  et.Z.post("http://localhost:90/private/blog", n, {
+                  et.Z.post("/api/private/blog", n, {
                     headers: { Authorization: "Bearer " + o },
                   })
                     .then((e) => {
@@ -1739,7 +1735,7 @@
               (a.value = e.memberProfileDto.imageSourcePath),
               "" !== a.value && null !== a.value)
             ) {
-              let e = "http://localhost:90" + a.value;
+              let e = "/api" + a.value;
               t.commit("setProfilePicture", e);
             }
             return {
@@ -1984,7 +1980,7 @@
             return (
               (0, i.bv)(async () => {
                 const i = localStorage.getItem("accessToken");
-                await et.Z.get("http://localhost:90/private/profile", {
+                await et.Z.get("/api/private/profile", {
                   headers: { Authorization: "Bearer " + i },
                 })
                   .then((i) => {
@@ -1997,7 +1993,7 @@
                       (a.value = l.imageSourcePath),
                       "" !== a.value && null !== a.value)
                     ) {
-                      let t = "http://localhost:90" + a.value;
+                      let t = "/api" + a.value;
                       e.commit("setProfilePicture", t);
                     }
                   })
@@ -2153,7 +2149,7 @@
         async function Wr(e) {
           try {
             return (
-              await et.Z.get("http://localhost:90/private/resource", {
+              await et.Z.get("/api/private/resource", {
                 headers: { Authorization: "Bearer " + e },
               }),
               Ot.commit("setLoginState", !0),
@@ -2167,7 +2163,7 @@
         async function xr() {
           const e = localStorage.getItem("refreshToken");
           try {
-            const t = await et.Z.post("http://localhost:90/token", e),
+            const t = await et.Z.post("/api/token", e),
               n = t.data,
               o = n.accessToken;
             return (

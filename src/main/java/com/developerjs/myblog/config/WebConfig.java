@@ -18,7 +18,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     public void addCorsMappings(CorsRegistry registry){
         registry.addMapping("/**")
-                .allowedOrigins("http://144.24.73.164:8088") // Vue.js 서버의 주소
+                .allowedOrigins("http://localhost:8088") // Vue.js 서버의 주소
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true);
